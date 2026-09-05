@@ -100,11 +100,14 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
+    - _EmissionPulseAmount: 0.2
+    - _EmissionPulsePhase: 0
+    - _EmissionPulseSpeed: 0.7
     - _EnvironmentReflections: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.07999998
     - _GlossyReflections: 1
-    - _IndirectStrength: 0.3
+    - _IndirectStrength: 0.1
     - _Metallic: 0
     - _Mode: 0
     - _NormalStrength: 1
@@ -114,14 +117,14 @@ Material:
     - _RealtimeShadowSoftness: 0.04
     - _RealtimeShadowThreshold: 0.5
     - _ReceiveShadows: 1
-    - _ShadowSoftness: 0.03
-    - _ShadowThreshold: 0.45
+    - _ShadowSoftness: 0.138
+    - _ShadowThreshold: 0.69
     - _Smoothness: 0.07999998
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpecularIntensity: 0.5
+    - _SpecularIntensity: 0.46
     - _SpecularSize: 0.15
-    - _SpecularSoftness: 0.02
+    - _SpecularSoftness: 0.25
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
@@ -131,7 +134,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.4613561, g: 0.4613561, b: 0.44920385, a: 1}
+    - _BaseColor: {r: 0.347, g: 0.347, b: 0.33817798, a: 1}
     - _Color: {r: 0.4613561, g: 0.4613561, b: 0.4492038, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _ShadowColor: {r: 0.39999998, g: 0.45, b: 0.54999995, a: 1}

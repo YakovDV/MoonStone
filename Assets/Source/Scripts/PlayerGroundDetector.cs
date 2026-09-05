@@ -85,12 +85,12 @@ public sealed class PlayerGroundDetector : MonoBehaviour
     }
 }
 
-public struct GroundInfo
+public readonly struct GroundInfo
 {
-    public bool IsGrounded;
-    public Vector3 Normal;
-    public Vector3 Point;
-    public float Offset;
+    public bool IsGrounded { get; }
+    public Vector3 Normal { get; }
+    public Vector3 Point { get; }
+    public float Offset { get; }
 
     public GroundInfo(bool isGrounded, Vector3 normal, Vector3 point, float offset)
     {
