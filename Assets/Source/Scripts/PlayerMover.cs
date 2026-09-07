@@ -10,7 +10,6 @@ public class PlayerMover : MonoBehaviour
 
     [SerializeField] private float _speed = 8f;
     [SerializeField] private float _rotationSpeed = 180f;
-    [SerializeField] private float _groundAlignmentSpeed = 180f;
 
     [SerializeField] private float _maximumClimbAngle = 35f;
     [SerializeField] private float _slopeSpeedMultiplier = 0.5f;

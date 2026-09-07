@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class PlayerInputReader : MonoBehaviour
 {
-    private Controls _controls;
+    [SerializeField] private VirtualStick _virtualStick;
 
-    public Vector2 Move => _controls.Player.Move.ReadValue<Vector2>();
+    public Vector2 Move => GetMove();
     public bool IsPausePressed => _controls.System.Pause.WasPressedThisFrame();
+    
+    private Controls _controls;
 
     private void Awake()
     {
@@ -16,6 +18,14 @@ public class PlayerInputReader : MonoBehaviour
     {
         EnableGameplayInput();
         _controls.System.Enable();
+    }
+
+    public Vector2 GetMove()
+    {
+        if (_virtualStick.IsActive)
+            return _virtualStick.Value;
+
+        return _controls.Player.Move.ReadValue<Vector2>();
     }
 
     private void OnDisable()
