@@ -4,9 +4,7 @@
 
 ## Current systems
 
-- Custom kinematic rover controller
-- Ground detection and slope handling
-- Collision solving and depenetration
+- Custom kinematic vehicle controller
 - Runtime terrain track system
 - Custom URP shaders and HLSL
 - Lunar terrain and resource assets
