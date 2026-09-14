@@ -6,7 +6,7 @@ public class PlayerInputReader : MonoBehaviour
 
     public Vector2 Move => GetMove();
     public bool IsPausePressed => _controls.System.Pause.WasPressedThisFrame();
-    
+
     private Controls _controls;
 
     private void Awake()
@@ -22,8 +22,11 @@ public class PlayerInputReader : MonoBehaviour
 
     public Vector2 GetMove()
     {
-        if (_virtualStick.IsActive)
-            return _virtualStick.Value;
+        if (_virtualStick != null)
+        {
+            if (_virtualStick.IsActive)
+                return _virtualStick.Value;
+        }
 
         return _controls.Player.Move.ReadValue<Vector2>();
     }
