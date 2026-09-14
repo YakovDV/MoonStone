@@ -12,10 +12,13 @@ public class DepositSpawnDispatcher : MonoBehaviour
 
     private Dictionary<DepositConfig, UniversalSpawner<Deposit>> _spawners;
 
-    private void Start()
+    private void Awake()
     {
         _spawners = _depositSpawnerLinks.ToDictionary(x => x.Config, x => x.Spawner);
+    }
 
+    private void Start()
+    {
         foreach (var zone in _spawnZones)
         {
             Spawn(zone.DepositConfig, zone.Zone, zone.DepositCount);

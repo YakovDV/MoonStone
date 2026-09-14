@@ -23,8 +23,8 @@ public class Resource : MonoBehaviour
 
     public void Consume()
     {
-        ReadyToReturn?.Invoke(this);
         ResetState();
+        ReadyToReturn?.Invoke(this);
     }
 
     private void ResetState()

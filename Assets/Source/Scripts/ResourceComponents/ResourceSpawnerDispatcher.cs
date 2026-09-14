@@ -23,9 +23,9 @@ public sealed class ResourceSpawnerDispatcher : MonoBehaviour
             Vector3 spawnPoint = CalculateSpawnPoint(spawnZone);
 
             Resource resource = spawner.Spawn(spawnPoint);
-            resource.Initialize(config);
 
             resource.ReadyToReturn += ReturnResource;
+            resource.Initialize(config);
         }
     }
 
