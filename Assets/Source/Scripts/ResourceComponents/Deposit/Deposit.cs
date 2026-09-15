@@ -34,10 +34,12 @@ public class Deposit : MonoBehaviour, IDamageable
         if (CurrentIntegrity <= 0)
         {
             CurrentIntegrity = 0;
-
-            Destroyed?.Invoke(this);
+            ValueChanged?.Invoke(CurrentIntegrity);
 
             SpawnFragments();
+
+            Destroyed?.Invoke(this);
+            return;
         }
 
         ValueChanged?.Invoke(CurrentIntegrity);

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Resource : MonoBehaviour
 {
     [SerializeField] private GameObject[] _visualVariants;
@@ -10,6 +11,11 @@ public class Resource : MonoBehaviour
 
     public ResourceConfig Config => _config;
     public event Action<Resource> ReadyToReturn;
+
+    private void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
+    }
 
     public void Initialize(ResourceConfig config)
     {
@@ -23,8 +29,8 @@ public class Resource : MonoBehaviour
 
     public void Consume()
     {
-        ResetState();
         ReadyToReturn?.Invoke(this);
+        ResetState();
     }
 
     private void ResetState()

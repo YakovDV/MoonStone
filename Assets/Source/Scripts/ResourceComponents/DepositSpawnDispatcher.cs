@@ -5,7 +5,6 @@ using UnityEngine;
 public class DepositSpawnDispatcher : MonoBehaviour
 {
     [SerializeField] private DepositSpawnerLink[] _depositSpawnerLinks;
-    [SerializeField] private float _spawnZoneSizeModificator = 0.8f;
     [SerializeField] private ResourceSpawnerDispatcher _resourceSpawnerDispatcher;
 
     [SerializeField] private DepositSpawnZone[] _spawnZones;
@@ -52,6 +51,7 @@ public class DepositSpawnDispatcher : MonoBehaviour
 
     private void ReturnDeposit(Deposit deposit)
     {
+        deposit.ResetState();
         deposit.Destroyed -= ReturnDeposit;
 
         _spawners[deposit.Config].Despawn(deposit);
