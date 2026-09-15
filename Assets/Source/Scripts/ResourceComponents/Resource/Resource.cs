@@ -1,20 +1,45 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-public class Resource : MonoBehaviour
+[RequireComponent(typeof(Rigidbody), typeof(Collider))]
+public class Resource : MonoBehaviour, IAttractable
 {
     [SerializeField] private GameObject[] _visualVariants;
+    [SerializeField] private float _attractionSpeed = 10f;
 
     private Rigidbody _rigidbody;
     private ResourceConfig _config;
+    private Transform _target;
 
     public ResourceConfig Config => _config;
-    public event Action<Resource> ReadyToReturn;
+    public event Action<Resource> ResourceConsumed;
 
     private void Awake()
     {
+        GetComponent<Collider>().isTrigger = true;
         _rigidbody = GetComponent<Rigidbody>();
+    }
+
+    private void FixedUpdate()
+    {
+        if (_target == null)
+            return;
+
+        Vector3 direction = _target.position - transform.position;
+
+        _rigidbody.velocity = direction.normalized * _attractionSpeed;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (_config == null)
+            return;
+
+        if (other.TryGetComponent(out IStorage storage))
+        {
+            if (storage.TryAdd(_config))
+                Consume();
+        }
     }
 
     public void Initialize(ResourceConfig config)
@@ -27,15 +52,20 @@ public class Resource : MonoBehaviour
             _visualVariants[i].SetActive(i == index);
     }
 
-    public void Consume()
+    public void SetTarget(Transform target)
     {
-        ReadyToReturn?.Invoke(this);
-        ResetState();
+        _target = target;
     }
 
-    private void ResetState()
+    public void Consume()
+    {
+        ResourceConsumed?.Invoke(this);
+    }
+
+    public void ResetState()
     {
         _config = null;
+        _target = null;
 
         _rigidbody.velocity = Vector3.zero;
         _rigidbody.angularVelocity = Vector3.zero;

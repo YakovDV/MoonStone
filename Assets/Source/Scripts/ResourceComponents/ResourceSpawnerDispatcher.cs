@@ -24,7 +24,7 @@ public sealed class ResourceSpawnerDispatcher : MonoBehaviour
 
             Resource resource = spawner.Spawn(spawnPoint);
 
-            resource.ReadyToReturn += ReturnResource;
+            resource.ResourceConsumed += ReturnResource;
             resource.Initialize(config);
         }
     }
@@ -38,8 +38,12 @@ public sealed class ResourceSpawnerDispatcher : MonoBehaviour
 
     private void ReturnResource(Resource resource)
     {
-        resource.ReadyToReturn -= ReturnResource;
+        resource.ResourceConsumed -= ReturnResource;
 
-        _spawners[resource.Config].Despawn(resource);
+        var config = resource.Config;
+
+        resource.ResetState();
+
+        _spawners[config].Despawn(resource);
     }
 }
