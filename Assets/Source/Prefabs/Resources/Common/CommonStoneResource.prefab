@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &801682608616085881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8606151271219213943}
+  - component: {fileID: 6221357182960474247}
+  m_Layer: 11
+  m_Name: PhysicsCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8606151271219213943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801682608616085881}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2138679184227244025}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6221357182960474247
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801682608616085881}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.8, y: 0.8, z: 0.8}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &446619155809504245
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8,6 +61,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2138679184227244025}
     m_Modifications:
+    - target: {fileID: 1593270572230174845, guid: 98b7fd85f6d13cf41bbdec7d1f2483b6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 5805335561052971071, guid: 98b7fd85f6d13cf41bbdec7d1f2483b6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -65,8 +123,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6618991021301774981, guid: 98b7fd85f6d13cf41bbdec7d1f2483b6,
         type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618991021301774981, guid: 98b7fd85f6d13cf41bbdec7d1f2483b6,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7076809241352957251, guid: 98b7fd85f6d13cf41bbdec7d1f2483b6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -96,17 +164,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 58100833c5220ea46a3bff7dac4bebe5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.6295824
+      value: -3.3213284
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 58100833c5220ea46a3bff7dac4bebe5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.3439777
+      value: 0.4788742
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 58100833c5220ea46a3bff7dac4bebe5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -93.387985
+      value: -62.09886
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 58100833c5220ea46a3bff7dac4bebe5,
         type: 3}
@@ -158,6 +226,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CommonStoneResource
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58100833c5220ea46a3bff7dac4bebe5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4742473837712756890, guid: 58100833c5220ea46a3bff7dac4bebe5, type: 3}
     m_RemovedGameObjects:
@@ -172,6 +245,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5774365435250940387}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 58100833c5220ea46a3bff7dac4bebe5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8606151271219213943}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 58100833c5220ea46a3bff7dac4bebe5,
         type: 3}
@@ -211,7 +288,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8, y: 0.8, z: 0.8}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7971817306711787785
 Rigidbody:
@@ -255,6 +332,7 @@ MonoBehaviour:
   _visualVariants:
   - {fileID: 6767173571385504112}
   - {fileID: 6586930518743139161}
+  _attractionSpeed: 10
 --- !u!4 &2138679184227244025 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 58100833c5220ea46a3bff7dac4bebe5,
@@ -269,10 +347,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2138679184227244025}
     m_Modifications:
+    - target: {fileID: 3383201044508502032, guid: 3abe7981054104d47a667aa356c4dc51,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4977160824542241267, guid: 3abe7981054104d47a667aa356c4dc51,
         type: 3}
       propertyPath: m_Name
       value: CommonStone_B
+      objectReference: {fileID: 0}
+    - target: {fileID: 4977160824542241267, guid: 3abe7981054104d47a667aa356c4dc51,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4977160824542241267, guid: 3abe7981054104d47a667aa356c4dc51,
         type: 3}
@@ -328,6 +416,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7693610484757675463, guid: 3abe7981054104d47a667aa356c4dc51,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

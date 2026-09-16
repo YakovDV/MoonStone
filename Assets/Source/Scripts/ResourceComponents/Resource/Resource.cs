@@ -33,12 +33,18 @@ public class Resource : MonoBehaviour, IAttractable
     private void OnTriggerEnter(Collider other)
     {
         if (_config == null)
+        {
+            Debug.Log("config is null.");
             return;
+        }
 
         if (other.TryGetComponent(out IStorage storage))
         {
             if (storage.TryAdd(_config))
+            {
                 Consume();
+                Debug.Log("Sent to container");
+            }
         }
     }
 

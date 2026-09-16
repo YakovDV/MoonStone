@@ -13,10 +13,15 @@ public class Deposit : MonoBehaviour, IDamageable
     public event Action<int> ValueChanged;
     public event Action<Deposit> Destroyed;
 
-    public void Initialize(DepositConfig config, ResourceSpawnerDispatcher fragmentSpawner)
+    private void Start()
+    {
+        Initialize(_config, _resourceSpawner);
+    }
+
+    public void Initialize(DepositConfig config, ResourceSpawnerDispatcher resourceSpawner)
     {
         _config = config;
-        _resourceSpawner = fragmentSpawner;
+        _resourceSpawner = resourceSpawner;
 
         CurrentIntegrity = UnityEngine.Random.Range(config.MinIntegrity, config.MaxIntegrity + 1);
     }
