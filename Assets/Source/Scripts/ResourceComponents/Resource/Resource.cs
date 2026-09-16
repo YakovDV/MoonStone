@@ -45,6 +45,8 @@ public class Resource : MonoBehaviour, IAttractable
                 Consume();
                 Debug.Log("Sent to container");
             }
+            else
+                _target = null;
         }
     }
 

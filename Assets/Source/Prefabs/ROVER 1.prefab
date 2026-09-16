@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8468369694863210239}
   - component: {fileID: 3756186658854051382}
   - component: {fileID: 3448031942042694402}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RV4_Wheel_RR_GEO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 749222671627202431}
   - component: {fileID: 6859652536151089492}
   - component: {fileID: 2275819207534704856}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RV4_FillGauge_04_GEO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 1840250239277939147}
   - component: {fileID: 5767642625080187188}
   - component: {fileID: 1522110928960933850}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RV4_Wheel_FR_GEO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3541977108579798598}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TrackSourceRearR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 8370731662490027357}
   - component: {fileID: 5533612362876780359}
   - component: {fileID: 1113023459362018286}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RV4_CrusherDrum_GEO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -381,7 +381,9 @@ GameObject:
   - component: {fileID: 935966056718360699}
   - component: {fileID: 8806328893459720180}
   - component: {fileID: 4989727475201646464}
-  m_Layer: 0
+  - component: {fileID: 797224145937764095}
+  - component: {fileID: 8787976256883507703}
+  m_Layer: 10
   m_Name: ROVER 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +475,7 @@ MonoBehaviour:
   - {fileID: 6710089891361857822}
   _groundMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 256
   _rayStartOffset: 0.5
   _rayDistance: 1.5
   _sampleDistance: 0.15
@@ -518,8 +520,8 @@ MonoBehaviour:
   - {x: 1.6, y: 0, z: 2}
   - {x: -1.6, y: 0, z: -2}
   - {x: 1.6, y: 0, z: -2}
-  _rayStartHeight: 3
-  _rayDistance: 5
+  _rayStartHeight: 4
+  _rayDistance: 8
   _groundMask:
     serializedVersion: 2
     m_Bits: 256
@@ -535,10 +537,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf5435160a1360441892d9a87c49415a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bodyCollider: {fileID: 0}
+  _bodyCollider: {fileID: 797224145937764095}
   _collisionMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 566
   _skinWidth: 0.02
   _movementIterations: 3
   _depenetrationIterations: 3
@@ -558,6 +560,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 1514565487245911432}
   _playerMover: {fileID: 8656055639987895447}
+--- !u!65 &797224145937764095
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2285410969839539595}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4, y: 2, z: 6}
+  m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!114 &8787976256883507703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2285410969839539595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcbab9e9bdc95bc458d9e9b00051d4f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _magneticRadius: 5
+  _findingFrequency: 1
+  _attractableMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  _maxHits: 16
+  _resourceContainer: {fileID: 5150981356504253350}
+  _maxResourceTier: 1
 --- !u!1 &2517129292079319241
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,7 +612,7 @@ GameObject:
   - component: {fileID: 689670375910981983}
   - component: {fileID: 6912897043144493064}
   - component: {fileID: 679937929545770426}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RV4_FillGauge_05_GEO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -652,7 +695,7 @@ GameObject:
   - component: {fileID: 8990907950497621390}
   - component: {fileID: 7605661947150085093}
   - component: {fileID: 6765868740918818530}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DustParticlesBig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5480,7 +5523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 624581061782036351}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SOCKET_CrusherHit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5513,7 +5556,7 @@ GameObject:
   - component: {fileID: 8002171510280012405}
   - component: {fileID: 8325593888256486216}
   - component: {fileID: 5322498009844470425}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RV4_CargoFill_GEO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5529,7 +5572,7 @@ Transform:
   m_GameObject: {fileID: 3332684815044796988}
   serializedVersion: 2
   m_LocalRotation: {x: -8.881784e-16, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.000000028403713, z: 0}
+  m_LocalPosition: {x: 0, y: 0.000000028403713, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5594,7 +5637,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 181427212379977085}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Lights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5633,7 +5676,7 @@ GameObject:
   - component: {fileID: 2094682040950752221}
   - component: {fileID: 4896174288505444035}
   - component: {fileID: 1997207461796754778}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RV4_FillGauge_03_GEO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5716,7 +5759,7 @@ GameObject:
   - component: {fileID: 1219521205031073736}
   - component: {fileID: 4289094675200487674}
   - component: {fileID: 2278862670878392589}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DustParticlesBig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10544,7 +10587,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8449153554370985186}
-  m_Layer: 0
+  - component: {fileID: 8585695272922262701}
+  m_Layer: 10
   m_Name: MOUNT_Crusher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10567,6 +10611,24 @@ Transform:
   - {fileID: 3080343358542483375}
   m_Father: {fileID: 3464599809727186125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8585695272922262701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4429100953429326031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a959c4c610d57134eac4ab51a58b22a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 50
+  _damageFrequency: 1
+  _damageZone: {fileID: 9077439580200551705}
+  _damageMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &4810178918460637866
 GameObject:
   m_ObjectHideFlags: 0
@@ -10576,7 +10638,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6821833625671882211}
-  m_Layer: 0
+  - component: {fileID: 5150981356504253350}
+  - component: {fileID: 9219928866522904068}
+  m_Layer: 10
   m_Name: MOUNT_Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10600,6 +10664,40 @@ Transform:
   - {fileID: 5824639721779327330}
   m_Father: {fileID: 3464599809727186125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5150981356504253350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4810178918460637866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 902e73378398a2f498fca28a68917fbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxCapacity: 100
+--- !u!65 &9219928866522904068
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4810178918460637866}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4, y: 3, z: 4}
+  m_Center: {x: 0, y: 0, z: -1.5}
 --- !u!1 &5420934912902262846
 GameObject:
   m_ObjectHideFlags: 0
@@ -10609,7 +10707,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1370653033312329230}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WheelsBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10642,7 +10740,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6710089891361857822}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TrackSourceForwardR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10675,7 +10773,7 @@ GameObject:
   - component: {fileID: 6613913268184748004}
   - component: {fileID: 4710160284872793745}
   - component: {fileID: 5124668194054817722}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RV4_Wheel_FL_GEO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10756,7 +10854,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5551405635166650871}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WheelsForward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10789,7 +10887,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3763476936196559987}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SOCKET_CargoIntake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10820,7 +10918,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5824639721779327330}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RV4_CargoFill_Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10854,7 +10952,7 @@ GameObject:
   - component: {fileID: 3681076594387834697}
   - component: {fileID: 2388403187833953621}
   - component: {fileID: 1888462462816313610}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RV4_Container_GEO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10938,7 +11036,7 @@ GameObject:
   - component: {fileID: 863909213786495713}
   - component: {fileID: 5638950717715759866}
   - component: {fileID: 4699530007397955120}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DustParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15768,7 +15866,8 @@ GameObject:
   - component: {fileID: 3080343358542483375}
   - component: {fileID: 6832640307218108231}
   - component: {fileID: 4879190782386365444}
-  m_Layer: 0
+  - component: {fileID: 9077439580200551705}
+  m_Layer: 10
   m_Name: RV4_CrusherFrame_GEO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15842,6 +15941,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &9077439580200551705
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7092186453285005122}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.5800009, y: 1.9000002, z: 2.5}
+  m_Center: {x: 0, y: 0.95999986, z: 2.8500006}
 --- !u!1 &7275037508588576015
 GameObject:
   m_ObjectHideFlags: 0
@@ -15853,7 +15973,7 @@ GameObject:
   - component: {fileID: 5689468595288141786}
   - component: {fileID: 4882099633218106925}
   - component: {fileID: 1943414786279396553}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RV4_FillGauge_06_GEO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15936,7 +16056,7 @@ GameObject:
   - component: {fileID: 1501144379574981}
   - component: {fileID: 3966709552393333693}
   - component: {fileID: 8036701372943806471}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RV4_Body_GEO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16020,7 +16140,7 @@ GameObject:
   - component: {fileID: 3683240402627177455}
   - component: {fileID: 8364059474326136545}
   - component: {fileID: 3408010890365162252}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16138,7 +16258,7 @@ GameObject:
   - component: {fileID: 4979475707778450565}
   - component: {fileID: 8304945264217082758}
   - component: {fileID: 8107743501283354936}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RV4_Wheel_RL_GEO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16223,7 +16343,7 @@ GameObject:
   - component: {fileID: 4300483906532371961}
   - component: {fileID: 6076079590448624123}
   - component: {fileID: 2867846995942721536}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RV4_FillGauge_02_GEO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16304,7 +16424,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5891195173692247661}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TrackSourceRearL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16337,7 +16457,7 @@ GameObject:
   - component: {fileID: 6564103373704213438}
   - component: {fileID: 5077405036245543621}
   - component: {fileID: 3906986715056421389}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RV4_FillGauge_01_GEO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16418,7 +16538,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4918401260140570135}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TrackSourceForwardL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16451,7 +16571,7 @@ GameObject:
   - component: {fileID: 6534017286057386064}
   - component: {fileID: 4064735531382152773}
   - component: {fileID: 4331878242060447612}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DustParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21279,7 +21399,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7723910945601922445}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SOCKET_CargoUnload
   m_TagString: Untagged
   m_Icon: {fileID: 0}

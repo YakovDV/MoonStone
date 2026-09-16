@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Integrity : MonoBehaviour, IDamageable
+public class Integrity : MonoBehaviour
 {
     [SerializeField] private int _value;
 
@@ -15,7 +15,7 @@ public class Integrity : MonoBehaviour, IDamageable
         CurrentValue = _value;
     }
 
-    public void TakeDamage(int damage)
+    public void TryMine(int damage)
     {
         if (damage <= 0)
             return;

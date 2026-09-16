@@ -6,7 +6,6 @@ public class DepositSpawnDispatcher : MonoBehaviour
 {
     [SerializeField] private DepositSpawnerLink[] _depositSpawnerLinks;
     [SerializeField] private ResourceSpawnerDispatcher _resourceSpawnerDispatcher;
-
     [SerializeField] private DepositSpawnZone[] _spawnZones;
 
     private Dictionary<DepositConfig, UniversalSpawner<Deposit>> _spawners;

@@ -10,12 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bb493e78b2ad8b448ada83d39bc0034, type: 3}
-  m_Name: CommonResource
+  m_Name: HeavyResource
   m_EditorClassIdentifier: 
-  _id: 
-  _value: 100
-  _mass: 10
-  _tier: 0
-  _prefabs:
-  - {fileID: 6618991021301774981, guid: 98b7fd85f6d13cf41bbdec7d1f2483b6, type: 3}
-  - {fileID: 4977160824542241267, guid: 3abe7981054104d47a667aa356c4dc51, type: 3}
+  _id: 1
+  _value: 250
+  _mass: 50
+  _tier: 2

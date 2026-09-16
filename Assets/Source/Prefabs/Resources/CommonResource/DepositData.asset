@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27062392a1e8bc3478b8526f5a10a4d6, type: 3}
+  m_Name: DepositData
+  m_EditorClassIdentifier: 
+  _tier: 1
+  _minIntegrity: 100
+  _maxIntegrity: 200
+  _drops:
+  - _resource: {fileID: 11400000, guid: 76dffbdd60d75044aa5a2c55868b03e3, type: 2}
+    _chance: 1
+    _minAmount: 5
+    _maxAmount: 100

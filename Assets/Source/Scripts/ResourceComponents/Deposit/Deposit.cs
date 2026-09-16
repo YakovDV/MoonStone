@@ -1,11 +1,12 @@
 using System;
 using UnityEngine;
 
-public class Deposit : MonoBehaviour, IDamageable
+public class Deposit : MonoBehaviour, IMineable
 {
     [SerializeField] private DepositConfig _config;
-    [SerializeField] private ResourceSpawnerDispatcher _resourceSpawner;
+    [SerializeField] private ResourceSpawnerDispatcher _resourceSpawnDispatcher;
 
+    public int Tier => _config.Tier;
     public int CurrentIntegrity { get; private set; }
 
     public DepositConfig Config => _config;
@@ -15,24 +16,24 @@ public class Deposit : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        Initialize(_config, _resourceSpawner);
+        Initialize(_config, _resourceSpawnDispatcher);
     }
 
     public void Initialize(DepositConfig config, ResourceSpawnerDispatcher resourceSpawner)
     {
         _config = config;
-        _resourceSpawner = resourceSpawner;
+        _resourceSpawnDispatcher = resourceSpawner;
 
         CurrentIntegrity = UnityEngine.Random.Range(config.MinIntegrity, config.MaxIntegrity + 1);
     }
 
-    public void TakeDamage(int damage)
+    public bool TryMine(int damage)
     {
         if (damage <= 0)
-            return;
+            return false;
 
         if (CurrentIntegrity <= 0)
-            return;
+            return false;
 
         CurrentIntegrity -= damage;
 
@@ -44,11 +45,13 @@ public class Deposit : MonoBehaviour, IDamageable
             SpawnFragments();
 
             Destroyed?.Invoke(this);
-            return;
+            return true;
         }
 
         ValueChanged?.Invoke(CurrentIntegrity);
         Debug.Log(CurrentIntegrity);
+
+        return true;
     }
 
     public void ResetState()
@@ -56,7 +59,7 @@ public class Deposit : MonoBehaviour, IDamageable
         gameObject.SetActive(false);
         CurrentIntegrity = 0;
         _config = null;
-        _resourceSpawner = null;
+        _resourceSpawnDispatcher = null;
     }
 
     private void SpawnFragments()
@@ -68,7 +71,7 @@ public class Deposit : MonoBehaviour, IDamageable
 
             int amount = UnityEngine.Random.Range(drop.MinAmount, drop.MaxAmount + 1);
 
-            _resourceSpawner.Spawn(drop.Resource, transform, amount);
+            _resourceSpawnDispatcher.Spawn(drop.Resource, transform, amount);
         }
     }
 }

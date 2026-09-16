@@ -10,12 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27062392a1e8bc3478b8526f5a10a4d6, type: 3}
-  m_Name: DepositData
+  m_Name: HeavyDepositData
   m_EditorClassIdentifier: 
-  _minIntegrity: 100
-  _maxIntegrity: 200
+  _tier: 2
+  _minIntegrity: 500
+  _maxIntegrity: 1000
   _drops:
+  - _resource: {fileID: 11400000, guid: f31c722179e0c7243bec5f9d5a8e1a8e, type: 2}
+    _chance: 0.9
+    _minAmount: 5
+    _maxAmount: 10
   - _resource: {fileID: 11400000, guid: 76dffbdd60d75044aa5a2c55868b03e3, type: 2}
     _chance: 1
-    _minAmount: 5
-    _maxAmount: 100
+    _minAmount: 2
+    _maxAmount: 10

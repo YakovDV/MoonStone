@@ -3,21 +3,46 @@ using UnityEngine;
 
 public class Crusher : MonoBehaviour
 {
+    [SerializeField] private int _tier = 4;
     [SerializeField] private int _damage = 10;
     [SerializeField] private float _damageFrequency = 1f;
     [SerializeField] private BoxCollider _damageZone;
     [SerializeField] private LayerMask _damageMask;
+    [SerializeField] private CrusherEffector _effector;
 
     public int Level { get; private set; } = 1;
 
     public event Action<int> DamageChanged;
     public event Action<int> LevelChanged;
 
+    private IMineable _currentTarget;
+    private bool _isCrushing;
     private readonly Collider[] _hits = new Collider[10];
     private float _damageTimer;
 
+    private void Awake()
+    {
+        Level = _tier;
+    }
+
     private void FixedUpdate()
     {
+        IMineable target = FindTarget();
+
+        if (target == null)
+        {
+            StopCrushing();
+            return;
+        }
+
+        if (ReferenceEquals(target, _currentTarget) == false)
+        {
+            StopCrushing();
+
+            _currentTarget = target;
+            _damageTimer = _damageFrequency;
+        }
+
         _damageTimer += Time.fixedDeltaTime;
 
         if (_damageTimer < _damageFrequency)
@@ -25,10 +50,20 @@ public class Crusher : MonoBehaviour
 
         _damageTimer -= _damageFrequency;
 
-        DoDamage();
+        if (_currentTarget.TryMine(_damage) == false)
+        {
+            StopCrushing();
+            return;
+        }
+
+        if (_isCrushing)
+            return;
+
+        _isCrushing = true;
+        _effector.Play(_currentTarget.Tier);
     }
 
-    private void DoDamage()
+    private IMineable FindTarget()
     {
         Vector3 center = _damageZone.transform.TransformPoint(_damageZone.center);
         Vector3 scale = _damageZone.transform.lossyScale;
@@ -36,11 +71,43 @@ public class Crusher : MonoBehaviour
 
         int count = Physics.OverlapBoxNonAlloc(center, halfExtents, _hits, _damageZone.transform.rotation, _damageMask, QueryTriggerInteraction.Ignore);
 
+        IMineable closest = null;
+        float closestDistance = float.MaxValue;
+
         for (int i = 0; i < count; i++)
         {
-            if (_hits[i].TryGetComponent(out IDamageable damageable))
-                damageable.TakeDamage(_damage);
+            if (_hits[i].TryGetComponent(out IMineable mineable) == false)
+                continue;
+
+            if (mineable.Tier > Level)
+                continue;
+
+            if (ReferenceEquals(mineable, _currentTarget))
+                return mineable;
+
+            Vector3 point = _hits[i].ClosestPoint(center);
+            float distance = (point - center).sqrMagnitude;
+
+            if (distance >= closestDistance)
+                continue;
+
+            closest = mineable;
+            closestDistance = distance;
         }
+
+        return closest;
+    }
+
+    private void StopCrushing()
+    {
+        _currentTarget = null;
+        _damageTimer = 0f;
+
+        if (_isCrushing == false)
+            return;
+
+        _isCrushing = false;
+        _effector.Stop();
     }
 
     public void Upgrade(int damageValue, int levelValue)

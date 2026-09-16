@@ -5,6 +5,8 @@ using UnityEngine;
 public sealed class ResourceSpawnerDispatcher : MonoBehaviour
 {
     [SerializeField] private ResourceSpawnerLink[] _resourceSpawnerLinks;
+    [SerializeField] private float _explosionForce = 5f;
+    [SerializeField] private float _explosionRadius = 10f;
     [SerializeField] private float _spawnZoneSizeModificator = 0.8f;
 
     private Dictionary<ResourceConfig, UniversalSpawner<Resource>> _spawners;
@@ -26,6 +28,11 @@ public sealed class ResourceSpawnerDispatcher : MonoBehaviour
 
             resource.ResourceConsumed += ReturnResource;
             resource.Initialize(config);
+
+            if (resource.TryGetComponent(out Rigidbody rigidbody))
+            {
+                rigidbody.AddExplosionForce(_explosionForce, spawnZone.position, _explosionRadius);
+            }
         }
     }
 
