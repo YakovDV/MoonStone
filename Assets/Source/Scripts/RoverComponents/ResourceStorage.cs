@@ -6,10 +6,14 @@ public class ResourceStorage : MonoBehaviour, IStorage
     [SerializeField] private float _maxCapacity = 100f;
 
     private float _currentResourcesMass;
-    private float _currentResourcesValue;
+    private int _currentResourcesValue;
+
+    public float MaxCapacity => _maxCapacity;
+    public float CurrentResourcesMass => _currentResourcesMass;
+    public int CurrentResourcesValue => _currentResourcesValue;
 
     public event Action<float> MassChanged;
-    public event Action<float> ValueChanged;
+    public event Action<int> ValueChanged;
 
     public bool CanAccept(ResourceConfig config)
     {
@@ -29,6 +33,15 @@ public class ResourceStorage : MonoBehaviour, IStorage
         Debug.Log($"Added {config.Value} vale, {config.Mass} mass");
 
         return true;
+    }
+
+    public void Clear()
+    {
+        _currentResourcesMass = 0;
+        _currentResourcesValue = 0;
+
+        MassChanged?.Invoke(0);
+        ValueChanged?.Invoke(0);
     }
 
     private void AddResource(ResourceConfig config)
