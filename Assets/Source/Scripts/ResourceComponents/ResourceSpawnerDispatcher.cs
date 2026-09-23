@@ -5,7 +5,7 @@ using UnityEngine;
 public sealed class ResourceSpawnerDispatcher : MonoBehaviour
 {
     [SerializeField] private ResourceSpawnerLink[] _resourceSpawnerLinks;
-    [SerializeField] private float _explosionForce = 5f;
+    [SerializeField] private float _explosionForce = 20f;
     [SerializeField] private float _explosionRadius = 10f;
     [SerializeField] private float _spawnZoneSizeModificator = 0.8f;
 
@@ -47,7 +47,7 @@ public sealed class ResourceSpawnerDispatcher : MonoBehaviour
     {
         resource.ResourceConsumed -= ReturnResource;
 
-        var config = resource.Config;
+        ResourceConfig config = resource.Config;
 
         resource.ResetState();
 

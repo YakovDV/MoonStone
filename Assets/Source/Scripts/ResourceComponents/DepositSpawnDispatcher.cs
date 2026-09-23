@@ -40,19 +40,19 @@ public class DepositSpawnDispatcher : MonoBehaviour
 
     private Vector3 CalculateSpawnPoint(BoxCollider zone)
     {
-        Vector3 point = new(
-    Random.Range(-zone.size.x * 0.5f, zone.size.x * 0.5f),
-    0f,
-    Random.Range(-zone.size.z * 0.5f, zone.size.z * 0.5f));
+        Vector3 point = new(Random.Range(-zone.size.x * 0.5f, zone.size.x * 0.5f), 0f, Random.Range(-zone.size.z * 0.5f, zone.size.z * 0.5f));
 
         return zone.transform.TransformPoint(point);
     }
 
     private void ReturnDeposit(Deposit deposit)
     {
-        deposit.ResetState();
         deposit.Destroyed -= ReturnDeposit;
 
-        _spawners[deposit.Config].Despawn(deposit);
+        DepositConfig config = deposit.Config;
+
+        deposit.ResetState();
+
+        _spawners[config].Despawn(deposit);
     }
 }

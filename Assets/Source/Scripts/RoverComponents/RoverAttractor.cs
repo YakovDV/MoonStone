@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ResourceAttractor : MonoBehaviour
+public class RoverAttractor : MonoBehaviour
 {
     [SerializeField] private float _magneticRadius = 5f;
     [SerializeField] private float _findingFrequency = 1f;
@@ -51,11 +51,19 @@ public class ResourceAttractor : MonoBehaviour
 
         for (int i = 0; i < hitCount; i++)
         {
-            if (_hitBuffer[i].TryGetComponent(out IAttractable attractable))
+            if (_hitBuffer[i].TryGetComponent(out IAttractable attractable) == false)
+                continue;
+
+            if (attractable is IResource resource)
             {
-                if (attractable.Config.Tier <= _maxResourceTier && _resourceContainer.CanAccept(attractable.Config))
-                    attractable.SetTarget(transform);
+                if (resource.Config.Tier > _maxResourceTier)
+                    continue;
+
+                if (_resourceContainer.CanAccept(resource.Config) == false)
+                    continue;
             }
+
+            attractable.SetTarget(transform);
         }
     }
 }

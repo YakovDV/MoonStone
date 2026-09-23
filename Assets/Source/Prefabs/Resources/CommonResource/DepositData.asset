@@ -19,4 +19,4 @@ MonoBehaviour:
   - _resource: {fileID: 11400000, guid: 76dffbdd60d75044aa5a2c55868b03e3, type: 2}
     _chance: 1
     _minAmount: 5
-    _maxAmount: 100
+    _maxAmount: 15

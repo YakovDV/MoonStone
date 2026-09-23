@@ -8,6 +8,8 @@ public class ResourceUnloader : MonoBehaviour
     [SerializeField] private LayerMask _receiverMask;
     [SerializeField] private BoxCollider _checkZone;
 
+    [SerializeField] private UnloadEffector _unloadEffector;
+
     private readonly Collider[] _hits = new Collider[8];
 
     private Coroutine _findReceiverCoroutine;
@@ -47,7 +49,7 @@ public class ResourceUnloader : MonoBehaviour
             if (TryFindReceiver(out IResourceReceiver receiver) == true)
                 if (receiver.Receive(_storage))
                 {
-                    //Place for VFX or smthn
+                    _unloadEffector.Play(receiver.ReceivePoint.transform.position);
                 }
 
             yield return wait;

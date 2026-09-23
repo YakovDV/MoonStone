@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class RoverBase : MonoBehaviour
 {
     [SerializeField] private ResourceUnloadZone _resourceUnloadZone;
-    [SerializeField] private Wallet _wallet;
+    [SerializeField] private BaseMoneySpawner _moneySpawner;
+
+    public event Action<int> ResourceDelivered;
 
     private void OnEnable()
     {
@@ -22,6 +25,7 @@ public class RoverBase : MonoBehaviour
 
     private void OnUnloaded(int value)
     {
-        _wallet.Add(value);
+        ResourceDelivered?.Invoke(value);
+        _moneySpawner.Spawn(value);
     }
 }

@@ -1,1 +1,1 @@
-public sealed class ResourceSpawner : UniversalSpawner<Resource> { }
+public class ResourceSpawner : UniversalSpawner<Resource> { }

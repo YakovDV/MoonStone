@@ -9,6 +9,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: MAT_CommonStone
     second: {fileID: 2100000, guid: 43b41e3472396d5428cbe279a2e9b4f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_CommonStone.003
+    second: {fileID: 2100000, guid: 43b41e3472396d5428cbe279a2e9b4f1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -42,7 +47,7 @@ ModelImporter:
     lODScreenPercentages:
     - 0.25
     - 0.01
-    globalScale: 0.5
+    globalScale: 50
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody), typeof(Collider))]
-public class Resource : MonoBehaviour, IAttractable
+public class Resource : MonoBehaviour, IAttractable, IResource
 {
     [SerializeField] private GameObject[] _visualVariants;
     [SerializeField] private float _attractionSpeed = 10f;
@@ -34,7 +34,6 @@ public class Resource : MonoBehaviour, IAttractable
     {
         if (_config == null)
         {
-            Debug.Log("config is null.");
             return;
         }
 
@@ -43,7 +42,6 @@ public class Resource : MonoBehaviour, IAttractable
             if (storage.TryAdd(_config))
             {
                 Consume();
-                Debug.Log("Sent to container");
             }
             else
                 _target = null;

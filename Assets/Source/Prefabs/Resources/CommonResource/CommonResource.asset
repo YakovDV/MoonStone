@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: CommonResource
   m_EditorClassIdentifier: 
   _id: 
-  _value: 100
+  _value: 10
   _mass: 10
   _tier: 1

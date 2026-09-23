@@ -35,6 +35,8 @@ public class Crusher : MonoBehaviour
             return;
         }
 
+        int targetTier = target.Tier;
+
         if (ReferenceEquals(target, _currentTarget) == false)
         {
             StopCrushing();
@@ -60,7 +62,7 @@ public class Crusher : MonoBehaviour
             return;
 
         _isCrushing = true;
-        _effector.Play(_currentTarget.Tier);
+        _effector.Play(targetTier);
     }
 
     private IMineable FindTarget()
