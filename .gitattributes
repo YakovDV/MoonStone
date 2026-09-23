@@ -61,3 +61,11 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+
+###############################################################################
+# GitHub Linguist
+#
+# TextMesh Pro Essential Resources are third-party Unity assets and should not
+# affect the repository language statistics.
+###############################################################################
+Assets/TextMesh[[:space:]]Pro/** linguist-vendored
