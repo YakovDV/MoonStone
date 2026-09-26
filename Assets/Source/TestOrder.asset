@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8bebd0e9927cab4fb1c2f65ef7c8f16, type: 3}
   m_Name: TestOrder
   m_EditorClassIdentifier: 
-  TargetValue: 1000
+  TargetValue: 500
   Name: Test

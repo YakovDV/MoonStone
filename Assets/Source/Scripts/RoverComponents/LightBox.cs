@@ -8,24 +8,21 @@ public class LightBox : MonoBehaviour
 
     private Renderer _renderer;
 
-    private void Awake()
-    {
-        _renderer = GetComponent<Renderer>();
-    }
+    private Renderer Renderer => _renderer != null ? _renderer : _renderer = GetComponent<Renderer>();
 
     public void TurnOn()
     {
-        if (_renderer.material == _onMat)
+        if (Renderer.sharedMaterial == _onMat)
             return;
 
-        _renderer.material = _onMat;
+        Renderer.sharedMaterial = _onMat;
     }
 
     public void TurnOff()
     {
-        if (_renderer.material == _offMat)
+        if (Renderer.sharedMaterial == _offMat)
             return;
 
-        _renderer.material = _offMat;
+        Renderer.sharedMaterial = _offMat;
     }
 }
