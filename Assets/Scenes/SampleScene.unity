@@ -175,6 +175,9 @@ MonoBehaviour:
   _trackingPoint: {fileID: 6136001174939250578}
   _cameraOffset: {x: 0, y: 20, z: -6}
   _cameraAngle: {x: 60, y: 0, z: 0}
+  _alternativeOffset: {x: 0, y: 8, z: -10}
+  _alternativeAngle: {x: 35, y: 0, z: 0}
+  _changePositionDiration: 1
 --- !u!4 &32048821
 Transform:
   m_ObjectHideFlags: 0
@@ -184,7 +187,7 @@ Transform:
   m_GameObject: {fileID: 32048819}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 29.9, z: -70.36}
+  m_LocalPosition: {x: -6, y: 0, z: -60}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1763,13 +1766,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5817683, y: 0.028376581, z: -0.02031563, w: -0.81260556}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.30070576, y: 0, z: 0, w: 0.953717}
+  m_LocalPosition: {x: 0, y: 8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 32048821}
-  m_LocalEulerAnglesHint: {x: 71.2, y: -364, z: 0}
+  m_LocalEulerAnglesHint: {x: 35, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2302,6 +2305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wallet: {fileID: 923354780}
+  _cameraMover: {fileID: 32048820}
   _panelSwitcher: {fileID: 180848722}
   _closeButton: {fileID: 1576728956}
   _upgradeCards:
@@ -6335,7 +6339,7 @@ Transform:
   m_GameObject: {fileID: 1043834541}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.06, y: 1.5, z: -57.45}
+  m_LocalPosition: {x: 22.58, y: 1.5, z: -57.38}
   m_LocalScale: {x: 8, y: 3, z: 8}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17232,7 +17236,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1010182599}
   m_HandleRect: {fileID: 0}
@@ -17633,7 +17637,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 532601866}
   m_HandleRect: {fileID: 0}
@@ -18232,7 +18236,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 174686385}
   m_HandleRect: {fileID: 0}
@@ -18524,7 +18528,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1372503063}
   m_HandleRect: {fileID: 0}
@@ -35141,7 +35145,7 @@ PrefabInstance:
     - target: {fileID: 3464599809727186125, guid: bfd9595f387ebfe4ab82d0f447cdb039,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.4
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 3464599809727186125, guid: bfd9595f387ebfe4ab82d0f447cdb039,
         type: 3}
@@ -35151,7 +35155,7 @@ PrefabInstance:
     - target: {fileID: 3464599809727186125, guid: bfd9595f387ebfe4ab82d0f447cdb039,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -62.87
+      value: -60
       objectReference: {fileID: 0}
     - target: {fileID: 3464599809727186125, guid: bfd9595f387ebfe4ab82d0f447cdb039,
         type: 3}

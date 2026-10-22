@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class UpgradeShop : MonoBehaviour
 {
     [SerializeField] private Wallet _wallet;
+    [SerializeField] private CameraMover _cameraMover;
     [SerializeField] private PanelSwitcher _panelSwitcher;
     [SerializeField] private Button _closeButton;
 
@@ -39,6 +40,8 @@ public class UpgradeShop : MonoBehaviour
             return;
         }
 
+        _cameraMover.ChangePositionSmooth(CameraPositionType.AlternativePosition);
+
         _rover = rover;
         RefreshCards();
         _panelSwitcher.Show(ScreenID.Shop);
@@ -46,6 +49,8 @@ public class UpgradeShop : MonoBehaviour
 
     public void Close()
     {
+        _cameraMover.ChangePositionSmooth(CameraPositionType.NormalPosition);
+
         _rover = null;
         _panelSwitcher.Show(ScreenID.HUD);
     }
