@@ -20,17 +20,6 @@ public class PlayerInputReader : MonoBehaviour
         _controls.System.Enable();
     }
 
-    public Vector2 GetMove()
-    {
-        if (_virtualStick != null)
-        {
-            if (_virtualStick.IsActive)
-                return _virtualStick.Value;
-        }
-
-        return _controls.Player.Move.ReadValue<Vector2>();
-    }
-
     private void OnDisable()
     {
         _controls.Player.Disable();
@@ -40,6 +29,17 @@ public class PlayerInputReader : MonoBehaviour
     private void OnDestroy()
     {
         _controls.Dispose();
+    }
+
+    public Vector2 GetMove()
+    {
+        if (_virtualStick != null)
+        {
+            if (_virtualStick.IsActive)
+                return _virtualStick.Value;
+        }
+
+        return _controls.Player.Move.ReadValue<Vector2>();
     }
 
     public void EnableGameplayInput()

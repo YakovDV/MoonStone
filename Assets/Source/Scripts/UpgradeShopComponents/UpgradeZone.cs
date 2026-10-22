@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
@@ -16,14 +15,8 @@ public class UpgradeZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Rover rover = other.GetComponentInParent<Rover>();
-
-        if (rover == null)
-        {
-            return; 
-        }
-
-        _upgradeShop.Open(rover);
+        if (other.TryGetComponent(out Rover rover))
+            _upgradeShop.Open(rover);
     }
 
     private void OnTriggerExit(Collider other)

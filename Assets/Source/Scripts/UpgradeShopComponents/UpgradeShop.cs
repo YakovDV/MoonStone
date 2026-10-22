@@ -6,6 +6,7 @@ public class UpgradeShop : MonoBehaviour
 {
     [SerializeField] private Wallet _wallet;
     [SerializeField] private CameraMover _cameraMover;
+    [SerializeField] private PlayerInputReader _playerInputReader;
     [SerializeField] private PanelSwitcher _panelSwitcher;
     [SerializeField] private Button _closeButton;
 
@@ -45,6 +46,8 @@ public class UpgradeShop : MonoBehaviour
         _rover = rover;
         RefreshCards();
         _panelSwitcher.Show(ScreenID.Shop);
+
+        _playerInputReader.DisableGameplayInput();
     }
 
     public void Close()
@@ -53,6 +56,8 @@ public class UpgradeShop : MonoBehaviour
 
         _rover = null;
         _panelSwitcher.Show(ScreenID.HUD);
+
+        _playerInputReader.EnableGameplayInput();
     }
 
     private void OnCloseClick()

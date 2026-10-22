@@ -9,6 +9,8 @@ public class Game : MonoBehaviour
     [SerializeField] private Rover _rover;
     [SerializeField] private UpgradeData _upgradeData;
 
+    [SerializeField] private PlayerInputReader _playerInputReader;
+
     [SerializeField] private MoneyCollector _moneyCollector;
     [SerializeField] private OrderConfig _config;
     [SerializeField] private ProgressBar _progressBar;
@@ -43,6 +45,7 @@ public class Game : MonoBehaviour
     private void Start()
     {
         _panelSwitcher.Show(ScreenID.HUD);
+        _playerInputReader.EnableGameplayInput();
     }
 
     private void OnEnable()
@@ -73,5 +76,7 @@ public class Game : MonoBehaviour
     {
         _winPanel.alpha = 1;
         _playerHUD.alpha = 0;
+
+        _playerInputReader.DisableGameplayInput();
     }
 }
