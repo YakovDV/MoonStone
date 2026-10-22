@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4910b172b66e29d4884caaba6bded870, type: 3}
+  m_Name: ResourceStorageUpgradeConfig
+  m_EditorClassIdentifier: 
+  _maxLevel: 100
+  _capacityGroups:
+  - StartLevel: 2
+    EndLevel: 20
+    CapacityIncrease: 10
+  _costGroups:
+  - StartLevel: 2
+    EndLevel: 20
+    Cost: 100

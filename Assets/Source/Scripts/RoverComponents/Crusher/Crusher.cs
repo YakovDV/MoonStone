@@ -3,17 +3,18 @@ using UnityEngine;
 
 public class Crusher : MonoBehaviour
 {
-    [SerializeField] private int _tier = 4;
-    [SerializeField] private int _damage = 10;
+    [SerializeField] private int _baseDamage = 10;
     [SerializeField] private float _damageFrequency = 1f;
     [SerializeField] private BoxCollider _damageZone;
     [SerializeField] private LayerMask _damageMask;
     [SerializeField] private CrusherEffector _effector;
 
-    public int Level { get; private set; } = 1;
+    private int _damage = 10;
+
+    public int BaseDamage => _baseDamage;
+    public int Damage => _damage;
 
     public event Action<int> DamageChanged;
-    public event Action<int> LevelChanged;
 
     private IMineable _currentTarget;
     private bool _isCrushing;
@@ -22,7 +23,7 @@ public class Crusher : MonoBehaviour
 
     private void Awake()
     {
-        Level = _tier;
+        _damage = _baseDamage;
     }
 
     private void FixedUpdate()
@@ -81,9 +82,6 @@ public class Crusher : MonoBehaviour
             if (_hits[i].TryGetComponent(out IMineable mineable) == false)
                 continue;
 
-            if (mineable.Tier > Level)
-                continue;
-
             if (ReferenceEquals(mineable, _currentTarget))
                 return mineable;
 
@@ -112,15 +110,9 @@ public class Crusher : MonoBehaviour
         _effector.Stop();
     }
 
-    public void Upgrade(int damageValue, int levelValue)
+    public void SetDamage(int damage)
     {
-        if (damageValue <= 0 || levelValue <= 0)
-            return;
-
-        _damage += damageValue;
-        Level += levelValue;
-
+        _damage = damage;
         DamageChanged?.Invoke(_damage);
-        LevelChanged?.Invoke(Level);
     }
 }

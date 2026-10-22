@@ -14,6 +14,8 @@ public class RoverAttractor : MonoBehaviour
 
     private Coroutine _findingCoroutine;
 
+    public int MaxResourceTier => _maxResourceTier;
+
     private void Awake()
     {
         _hitBuffer = new Collider[_maxHits];
@@ -31,6 +33,11 @@ public class RoverAttractor : MonoBehaviour
             StopCoroutine(_findingCoroutine);
             _findingCoroutine = null;
         }
+    }
+
+    public void SetMaxResourceTier(int tier)
+    {
+        _maxResourceTier = tier;
     }
 
     private IEnumerator FindAttractable()

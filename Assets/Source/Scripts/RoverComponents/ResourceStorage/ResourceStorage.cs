@@ -3,17 +3,24 @@ using UnityEngine;
 
 public class ResourceStorage : MonoBehaviour, IStorage
 {
-    [SerializeField] private float _maxCapacity = 100f;
+    [SerializeField] private float _baseCapacity = 100f;
+    private float _maxCapacity = 100f;
 
     private float _currentResourcesMass;
     private int _currentResourcesValue;
 
+    public float BaseCapacity => _baseCapacity;
     public float MaxCapacity => _maxCapacity;
     public float CurrentResourcesMass => _currentResourcesMass;
     public int CurrentResourcesValue => _currentResourcesValue;
 
     public event Action<float> MassChanged;
     public event Action<int> ValueChanged;
+
+    private void Awake()
+    {
+        _maxCapacity = _baseCapacity;
+    }
 
     public bool CanAccept(ResourceConfig config)
     {
@@ -42,6 +49,13 @@ public class ResourceStorage : MonoBehaviour, IStorage
 
         MassChanged?.Invoke(0);
         ValueChanged?.Invoke(0);
+    }
+
+    public void SetMaxCapacity(float capacity)
+    {
+        _maxCapacity = capacity;
+
+        MassChanged?.Invoke(_currentResourcesMass);
     }
 
     private void AddResource(ResourceConfig config)
