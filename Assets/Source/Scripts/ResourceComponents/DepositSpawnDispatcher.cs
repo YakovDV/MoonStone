@@ -9,13 +9,14 @@ public class DepositSpawnDispatcher : MonoBehaviour
     [SerializeField] private DepositSpawnZone[] _spawnZones;
 
     private Dictionary<DepositConfig, UniversalSpawner<Deposit>> _spawners;
+    private HashSet<Deposit> _deposits = new();
 
     private void Awake()
     {
         _spawners = _depositSpawnerLinks.ToDictionary(x => x.Config, x => x.Spawner);
     }
 
-    private void Start()
+    public void SpawnInitial()
     {
         foreach (var zone in _spawnZones)
         {
@@ -34,8 +35,16 @@ public class DepositSpawnDispatcher : MonoBehaviour
             Deposit deposit = spawner.Spawn(spawnPoint);
             deposit.Initialize(config, _resourceSpawnerDispatcher);
 
+            _deposits.Add(deposit);
+
             deposit.Destroyed += ReturnDeposit;
         }
+    }
+
+    public void DespawnAll()
+    {
+        foreach (var deposit in _deposits.ToArray())
+            ReturnDeposit(deposit);
     }
 
     private Vector3 CalculateSpawnPoint(BoxCollider zone)
@@ -52,6 +61,8 @@ public class DepositSpawnDispatcher : MonoBehaviour
         DepositConfig config = deposit.Config;
 
         deposit.ResetState();
+
+        _deposits.Remove(deposit);
 
         _spawners[config].Despawn(deposit);
     }

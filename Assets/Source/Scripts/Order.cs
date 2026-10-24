@@ -26,4 +26,10 @@ public class Order
         if (IsCompleted)
             Completed?.Invoke();
     }
+
+    public void Reset()
+    {
+        Progress = 0;
+        ProgressChanged?.Invoke(Progress);
+    }
 }

@@ -10,6 +10,7 @@ public sealed class ResourceSpawnerDispatcher : MonoBehaviour
     [SerializeField] private float _spawnZoneSizeModificator = 0.8f;
 
     private Dictionary<ResourceConfig, UniversalSpawner<Resource>> _spawners;
+    private HashSet<Resource> _resources = new();
 
     private void Awake()
     {
@@ -29,11 +30,19 @@ public sealed class ResourceSpawnerDispatcher : MonoBehaviour
             resource.ResourceConsumed += ReturnResource;
             resource.Initialize(config);
 
+            _resources.Add(resource);
+
             if (resource.TryGetComponent(out Rigidbody rigidbody))
             {
                 rigidbody.AddExplosionForce(_explosionForce, spawnZone.position, _explosionRadius);
             }
         }
+    }
+
+    public void ReturnAllResources()
+    {
+        foreach (var resource in _resources.ToArray())
+            ReturnResource(resource);
     }
 
     private Vector3 CalculateSpawnPoint(Transform spawnZone)
@@ -50,6 +59,7 @@ public sealed class ResourceSpawnerDispatcher : MonoBehaviour
         ResourceConfig config = resource.Config;
 
         resource.ResetState();
+        _resources.Remove(resource);
 
         _spawners[config].Despawn(resource);
     }

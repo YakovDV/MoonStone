@@ -8,6 +8,7 @@ public class Deposit : MonoBehaviour, IMineable
 
     public int Tier => _config.Tier;
     public int CurrentIntegrity { get; private set; }
+    public int BaseIntegrity { get; private set; }
 
     public DepositConfig Config => _config;
 
@@ -24,7 +25,8 @@ public class Deposit : MonoBehaviour, IMineable
         _config = config;
         _resourceSpawnDispatcher = resourceSpawner;
 
-        CurrentIntegrity = UnityEngine.Random.Range(config.MinIntegrity, config.MaxIntegrity + 1);
+        BaseIntegrity = UnityEngine.Random.Range(config.MinIntegrity, config.MaxIntegrity + 1);
+        CurrentIntegrity = BaseIntegrity;
     }
 
     public bool TryMine(int damage)

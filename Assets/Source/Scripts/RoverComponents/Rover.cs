@@ -3,6 +3,8 @@ using UnityEngine;
 public class Rover : MonoBehaviour
 {
     [SerializeField] private UpgradeableComponent[] _upgradeableComponents;
+    [SerializeField] private PlayerMover _playerMover;
+    [SerializeField] private ResourceStorage _resourceStorage;
 
     public void Initialize(UpgradeData upgradeData)
     {
@@ -11,6 +13,12 @@ public class Rover : MonoBehaviour
             if (upgradeData.TryGetLevel(upgradeableComponent.UpgradeType, out int level))
                 upgradeableComponent.Initialize(level);
         }
+    }
+
+    public void ResetState()
+    {
+        _playerMover.ResetPosition();
+        _resourceStorage.Clear();
     }
 
     public UpgradeableComponent GetUpgrade(UpgradeType type)

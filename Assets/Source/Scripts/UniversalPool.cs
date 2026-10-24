@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -8,6 +9,7 @@ public class UniversalPool<T> : MonoBehaviour where T : MonoBehaviour
     [SerializeField] private int _poolMaxSize = 120;
 
     private ObjectPool<T> _pool;
+    private HashSet<T> _objects = new();
 
     public int PoolCapacity => _poolCapacity;
     public int CountAll => _pool.CountAll;
@@ -27,11 +29,29 @@ public class UniversalPool<T> : MonoBehaviour where T : MonoBehaviour
 
     public T GetObject()
     {
+        T @object = _pool.Get();
+        _objects.Add(@object);
         return _pool.Get();
     }
 
     public void ReleaseObject(T @object)
     {
+        if (@object == null)
+            return;
+
+        if (_objects.Remove(@object) == false)
+            return;
+
         _pool.Release(@object);
+    }
+
+    public void ReleaseAllObjects()
+    {
+        foreach (var t in _objects)
+        {
+            _pool.Release(t);
+        }
+
+        _objects.Clear();
     }
 }
