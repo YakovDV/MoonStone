@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,8 @@ public class CompletePanel : UIPanel
 {
     [SerializeField] private Button _restartButton;
     [SerializeField] private Button _exitButton;
+    [SerializeField] private TextMeshProUGUI _bonus;
+    [SerializeField] private string _bonusPreText;
 
     public event Action RestartRequested;
     public event Action ExitRequested;
@@ -20,6 +23,11 @@ public class CompletePanel : UIPanel
     {
         _restartButton.onClick?.RemoveListener(RequestRestart);
         _exitButton.onClick?.RemoveListener(RequestExit);
+    }
+
+    public void ShowBonus(int value)
+    {
+        _bonus.text = _bonusPreText + value.ToString();
     }
 
     private void RequestRestart()

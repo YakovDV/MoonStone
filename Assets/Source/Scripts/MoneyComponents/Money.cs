@@ -7,11 +7,12 @@ public class Money : MonoBehaviour, IAttractable
     [SerializeField] private float _attractionSpeed = 10f;
     [SerializeField] private float _rotationSpeed = 180f;
 
-    private int _worth;
     private Rigidbody _rigidbody;
     private Transform _target;
 
-    public event Action<Money> Consumed;
+    public int Worth {  get; private set; }
+
+    public event Action<Money> Collected;
 
     private void Awake()
     {
@@ -38,8 +39,8 @@ public class Money : MonoBehaviour, IAttractable
         if (other.TryGetComponent(out MoneyCollector collector) == false)
             return;
 
-        collector.Collect(_worth);
-        Consume();
+        collector.Collect(Worth);
+        Collected?.Invoke(this);
     }
 
     public void SetTarget(Transform target)
@@ -49,12 +50,7 @@ public class Money : MonoBehaviour, IAttractable
 
     public void Initialize(int value)
     {
-        _worth = value;
-    }
-
-    public void Consume()
-    {
-        Consumed?.Invoke(this);
+        Worth = value;
     }
 
     public void ResetState()
@@ -63,8 +59,5 @@ public class Money : MonoBehaviour, IAttractable
 
         _rigidbody.velocity = Vector3.zero;
         _rigidbody.angularVelocity = Vector3.zero;
-
-        transform.localPosition = Vector3.zero;
-        transform.localRotation = Quaternion.identity;
     }
 }

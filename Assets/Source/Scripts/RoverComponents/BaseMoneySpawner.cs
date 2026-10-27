@@ -28,6 +28,27 @@ public class BaseMoneySpawner : MonoBehaviour
             _spawnCoroutine = StartCoroutine(SpawnFrequently());
     }
 
+    public int GetRemainingWorth()
+    {
+        int value = _remainingValue;
+        _remainingValue = 0;
+
+        _moneySpawner.ForEachActive(item => value += item.Worth);
+
+        return value;
+    }
+
+    public void DespawnAll()
+    {
+        if (_spawnCoroutine != null)
+        {
+            StopCoroutine(_spawnCoroutine);
+            _spawnCoroutine = null;
+        }
+
+        _moneySpawner.ForEachActive(money => RequestDespawn(money));
+    }
+
     private IEnumerator SpawnFrequently()
     {
         WaitForSeconds wait = new(_frequency);
@@ -37,8 +58,9 @@ public class BaseMoneySpawner : MonoBehaviour
             int worth = Mathf.Min(_moneyWorth, _remainingValue);
 
             Money money = _moneySpawner.Spawn(_moneySpawnPoint.position);
+
             money.Initialize(worth);
-            money.Consumed += OnMoneyConsumed;
+            money.Collected += OnMoneyCollected;
 
             if (money.TryGetComponent(out Rigidbody rigidbody))
             {
@@ -60,11 +82,16 @@ public class BaseMoneySpawner : MonoBehaviour
         _spawnCoroutine = null;
     }
 
-    private void OnMoneyConsumed(Money money)
+    private void OnMoneyCollected(Money money)
+    {
+        RequestDespawn(money);
+    }
+
+    private void RequestDespawn(Money money)
     {
         _effectPlayer.PlayEffectAtPoint(money.transform.position);
 
-        money.Consumed -= OnMoneyConsumed;
+        money.Collected -= OnMoneyCollected;
         money.ResetState();
         _moneySpawner.Despawn(money);
     }

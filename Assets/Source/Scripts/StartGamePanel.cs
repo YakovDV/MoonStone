@@ -27,8 +27,8 @@ public class StartGamePanel : UIPanel
 
     public void Initilize(OrderConfig config)
     {
-        _orderNumber.text = config.Name;
-        _orderGoal.text = config.TargetValue.ToString();
+        _orderNumber.text = _orderText + config.Name;
+        _orderGoal.text = _orderGoalText + config.TargetValue.ToString();
     }
 
     private void RequestStart()

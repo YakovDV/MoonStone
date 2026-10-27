@@ -25,7 +25,7 @@ public class RoverBase : MonoBehaviour
 
     private void OnUnloaded(int value)
     {
-        ResourceDelivered?.Invoke(value);
         _moneySpawner.Spawn(value);
+        ResourceDelivered?.Invoke(value);
     }
 }

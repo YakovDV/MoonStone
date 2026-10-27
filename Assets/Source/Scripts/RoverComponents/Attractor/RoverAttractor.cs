@@ -64,7 +64,10 @@ public class RoverAttractor : MonoBehaviour
             if (attractable is IResource resource)
             {
                 if (resource.Config.Tier > _maxResourceTier)
+                {
+                    Debug.LogError($"Resource without Config: {((Component)resource).name}",(Component)resource);
                     continue;
+                }
 
                 if (_resourceContainer.CanAccept(resource.Config) == false)
                     continue;

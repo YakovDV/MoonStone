@@ -6,6 +6,7 @@ public class Game : MonoBehaviour
     [SerializeField] private WalletView[] _walletViews;
 
     [SerializeField] private RoverBase _roverBase;
+    [SerializeField] private BaseMoneySpawner _baseMoneySpawner;
     [SerializeField] private Rover _rover;
     [SerializeField] private MoneyCollector _moneyCollector;
     [SerializeField] private UpgradeData _upgradeData;
@@ -13,6 +14,8 @@ public class Game : MonoBehaviour
     [SerializeField] private PlayerInputReader _playerInputReader;
 
     [SerializeField] private LevelPopulation _levelPopulation;
+
+    [SerializeField] private TerrainTrackMask _terrainTrackMask;
 
     [SerializeField] private OrderConfig _config;
     [SerializeField] private ProgressBar _progressBar;
@@ -26,6 +29,7 @@ public class Game : MonoBehaviour
     [SerializeField] private CompletePanel _completePanel;
 
     private Order _order;
+    private int _remainingMoneyBonus;
 
     private void Awake()
     {
@@ -103,6 +107,7 @@ public class Game : MonoBehaviour
     private void OnExitRequested()
     {
         _levelPopulation.DespawnAll();
+        _baseMoneySpawner.DespawnAll();
 
         Time.timeScale = 1f;
         _playerInputReader.DisableGameplayInput();
@@ -111,6 +116,7 @@ public class Game : MonoBehaviour
     private void OnRestartRequested()
     {
         _levelPopulation.DespawnAll();
+        _baseMoneySpawner.DespawnAll();
 
         _order.Reset();
         _rover.ResetState();
@@ -121,6 +127,9 @@ public class Game : MonoBehaviour
     private void StartOrder()
     {
         _levelPopulation.SpawnInitial();
+        _remainingMoneyBonus = 0;
+
+        _terrainTrackMask.ClearMask();
 
         _panelSwitcher.Show(ScreenID.HUD);
         _playerInputReader.EnableGameplayInput();
@@ -139,6 +148,12 @@ public class Game : MonoBehaviour
     private void OnOrderComleted()
     {
         _playerInputReader.DisableGameplayInput();
+
+        _remainingMoneyBonus = _baseMoneySpawner.GetRemainingWorth();
+        _completePanel.ShowBonus(_remainingMoneyBonus);
+        _wallet.Add(_remainingMoneyBonus);
+
+        _baseMoneySpawner.DespawnAll();
 
         _panelSwitcher.Show(ScreenID.Complete);
     }

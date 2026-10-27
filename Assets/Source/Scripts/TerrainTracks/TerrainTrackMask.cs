@@ -80,6 +80,53 @@ public sealed class TerrainTrackMask : MonoBehaviour
         _hasPendingDraws = false;
     }
 
+    public void QueueSegment(Vector3 start, Vector3 end, float width, float edgeSoftness)
+    {
+        EnsureMaskCreated();
+        InitializeStampResources();
+
+        if (_stampMaterial == null)
+            return;
+
+        Vector3 direction = end - start;
+        direction.y = 0f;
+
+        float length = direction.magnitude;
+
+        if (length < 0.001f || width <= 0f)
+            return;
+
+        float halfWidth = width * 0.5f;
+        edgeSoftness = Mathf.Clamp(edgeSoftness, 0.001f, halfWidth);
+
+        Vector3 center = (start + end) * 0.5f;
+        Quaternion rotation = Quaternion.LookRotation(direction / length, Vector3.up);
+        Matrix4x4 matrix = Matrix4x4.TRS(center, rotation, new Vector3(width, 1f, length + width));
+
+        _stampProperties.Clear();
+        _stampProperties.SetFloat(_segmentLengthID, length);
+        _stampProperties.SetFloat(_trackHalfWidthID, halfWidth);
+        _stampProperties.SetFloat(_trackEdgeSoftnessID, edgeSoftness);
+
+        if (!_hasPendingDraws)
+        {
+            _commandBuffer.Clear();
+            _commandBuffer.SetRenderTarget(_mask, RenderBufferLoadAction.Load, RenderBufferStoreAction.Store);
+            _hasPendingDraws = true;
+        }
+
+        _commandBuffer.DrawMesh(_stampMesh, matrix, _stampMaterial, 0, 0, _stampProperties);
+    }
+
+    public void ClearMask()
+    {
+        RenderTexture previous = RenderTexture.active;
+
+        RenderTexture.active = _mask;
+        GL.Clear(false, true, Color.black);
+        RenderTexture.active = previous;
+    }
+
     private void EnsureMaskCreated()
     {
         if (_mask != null && _mask.IsCreated())
@@ -119,15 +166,6 @@ public sealed class TerrainTrackMask : MonoBehaviour
         Shader.SetGlobalVector(_trackWorldInvSizeID, new Vector4(1f / size.x, 1f / size.z, 0f, 0f));
         Shader.SetGlobalColor(TrackColorID, _trackColor);
         Shader.SetGlobalFloat(TrackStrengthID, _trackStrength);
-    }
-
-    public void ClearMask()
-    {
-        RenderTexture previous = RenderTexture.active;
-
-        RenderTexture.active = _mask;
-        GL.Clear(false, true, Color.black);
-        RenderTexture.active = previous;
     }
 
     private void InitializeStampResources()
@@ -182,43 +220,5 @@ public sealed class TerrainTrackMask : MonoBehaviour
         mesh.UploadMeshData(true);
 
         return mesh;
-    }
-
-    public void QueueSegment(Vector3 start, Vector3 end, float width, float edgeSoftness)
-    {
-        EnsureMaskCreated();
-        InitializeStampResources();
-
-        if (_stampMaterial == null)
-            return;
-
-        Vector3 direction = end - start;
-        direction.y = 0f;
-
-        float length = direction.magnitude;
-
-        if (length < 0.001f || width <= 0f)
-            return;
-
-        float halfWidth = width * 0.5f;
-        edgeSoftness = Mathf.Clamp(edgeSoftness, 0.001f, halfWidth);
-
-        Vector3 center = (start + end) * 0.5f;
-        Quaternion rotation = Quaternion.LookRotation(direction / length, Vector3.up);
-        Matrix4x4 matrix = Matrix4x4.TRS(center, rotation, new Vector3(width, 1f, length + width));
-
-        _stampProperties.Clear();
-        _stampProperties.SetFloat(_segmentLengthID, length);
-        _stampProperties.SetFloat(_trackHalfWidthID, halfWidth);
-        _stampProperties.SetFloat(_trackEdgeSoftnessID, edgeSoftness);
-
-        if (!_hasPendingDraws)
-        {
-            _commandBuffer.Clear();
-            _commandBuffer.SetRenderTarget(_mask, RenderBufferLoadAction.Load, RenderBufferStoreAction.Store);
-            _hasPendingDraws = true;
-        }
-
-        _commandBuffer.DrawMesh(_stampMesh, matrix, _stampMaterial, 0, 0, _stampProperties);
     }
 }

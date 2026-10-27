@@ -1,5 +1,4 @@
 using System;
-using System.Xml.Linq;
 using UnityEngine;
 
 public class UniversalSpawner<T> : MonoBehaviour where T : MonoBehaviour
@@ -19,6 +18,11 @@ public class UniversalSpawner<T> : MonoBehaviour where T : MonoBehaviour
     public void Despawn(T @object)
     {
         ReturnObject(@object);
+    }
+
+    public void ForEachActive(System.Action<T> action)
+    {
+        _objectPool.ForEachActive(action);
     }
 
     protected T ActivateObject(Vector3 spawnPoint)

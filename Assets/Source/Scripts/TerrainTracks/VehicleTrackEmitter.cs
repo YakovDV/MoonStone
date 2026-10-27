@@ -78,12 +78,7 @@ public sealed class VehicleTrackEmitter : MonoBehaviour
 
         if (distanceSquared <= _maximumSegmentLength * _maximumSegmentLength)
         {
-            _trackMask.QueueSegment(
-                _previousContactPoints[index],
-                contactPoint,
-                _trackWidth,
-                _edgeSoftness
-            );
+            _trackMask.QueueSegment(_previousContactPoints[index], contactPoint, _trackWidth, _edgeSoftness);
         }
 
         _previousContactPoints[index] = contactPoint;

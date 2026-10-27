@@ -11,6 +11,8 @@ public class UniversalPool<T> : MonoBehaviour where T : MonoBehaviour
     private ObjectPool<T> _pool;
     private HashSet<T> _objects = new();
 
+    private readonly List<T> _activeSnapshotBuffer = new List<T>();
+
     public int PoolCapacity => _poolCapacity;
     public int CountAll => _pool.CountAll;
 
@@ -31,7 +33,7 @@ public class UniversalPool<T> : MonoBehaviour where T : MonoBehaviour
     {
         T @object = _pool.Get();
         _objects.Add(@object);
-        return _pool.Get();
+        return @object;
     }
 
     public void ReleaseObject(T @object)
@@ -53,5 +55,20 @@ public class UniversalPool<T> : MonoBehaviour where T : MonoBehaviour
         }
 
         _objects.Clear();
+    }
+
+    public void ForEachActive(System.Action<T> action)
+    {
+        _activeSnapshotBuffer.Clear();
+
+        foreach (var obj in _objects)
+        {
+            _activeSnapshotBuffer.Add(obj);
+        }
+
+        for (int i = 0; i < _activeSnapshotBuffer.Count; i++)
+        {
+            action(_activeSnapshotBuffer[i]);
+        }
     }
 }

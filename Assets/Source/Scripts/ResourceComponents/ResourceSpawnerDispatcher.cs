@@ -10,7 +10,6 @@ public sealed class ResourceSpawnerDispatcher : MonoBehaviour
     [SerializeField] private float _spawnZoneSizeModificator = 0.8f;
 
     private Dictionary<ResourceConfig, UniversalSpawner<Resource>> _spawners;
-    private HashSet<Resource> _resources = new();
 
     private void Awake()
     {
@@ -26,11 +25,9 @@ public sealed class ResourceSpawnerDispatcher : MonoBehaviour
             Vector3 spawnPoint = CalculateSpawnPoint(spawnZone);
 
             Resource resource = spawner.Spawn(spawnPoint);
-
-            resource.ResourceConsumed += ReturnResource;
             resource.Initialize(config);
 
-            _resources.Add(resource);
+            resource.ResourceConsumed += ReturnResource;
 
             if (resource.TryGetComponent(out Rigidbody rigidbody))
             {
@@ -41,8 +38,11 @@ public sealed class ResourceSpawnerDispatcher : MonoBehaviour
 
     public void ReturnAllResources()
     {
-        foreach (var resource in _resources.ToArray())
-            ReturnResource(resource);
+        foreach (var link in _resourceSpawnerLinks)
+        {
+            var spawner = link.Spawner;
+            spawner.ForEachActive(resource => ReturnResource(resource));
+        }
     }
 
     private Vector3 CalculateSpawnPoint(Transform spawnZone)
@@ -57,9 +57,7 @@ public sealed class ResourceSpawnerDispatcher : MonoBehaviour
         resource.ResourceConsumed -= ReturnResource;
 
         ResourceConfig config = resource.Config;
-
         resource.ResetState();
-        _resources.Remove(resource);
 
         _spawners[config].Despawn(resource);
     }
