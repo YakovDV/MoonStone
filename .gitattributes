@@ -69,3 +69,4 @@
 # affect the repository language statistics.
 ###############################################################################
 Assets/TextMesh[[:space:]]Pro/** linguist-vendored
+Assets//** linguist-vendoredPluginYourGames
