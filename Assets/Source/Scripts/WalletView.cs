@@ -1,23 +1,22 @@
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 public class WalletView : MonoBehaviour
 {
+    [Inject] private Wallet _wallet;
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private string _name = "Money: ";
 
-    private Wallet _wallet;
+    private void OnEnable()
+    {
+        _wallet.ValueChanged += OnValueChanged;
+        OnValueChanged(_wallet.Value);
+    }
 
     private void OnDisable()
     {
         _wallet.ValueChanged -= OnValueChanged;
-    }
-
-    public void SetWallet(Wallet wallet)
-    {
-        _wallet = wallet;
-        _wallet.ValueChanged += OnValueChanged;
-        OnValueChanged(_wallet.Value);
     }
 
     private void OnValueChanged(int value)

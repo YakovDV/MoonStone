@@ -1,10 +1,12 @@
 using UnityEngine;
+using Zenject;
 
 [DisallowMultipleComponent]
 public sealed class VehicleTrackEmitter : MonoBehaviour
 {
+    [Inject] private TerrainTrackMask _trackMask;
+
     [Header("Dependencies")]
-    [SerializeField] private TerrainTrackMask _trackMask;
     [SerializeField] private Transform[] _trackSources;
     [SerializeField] private LayerMask _groundMask;
 

@@ -10,10 +10,29 @@ public abstract class UpgradeableComponent : MonoBehaviour
 
     public UpgradeType UpgradeType => _upgradeType;
 
+    private void OnValidate()
+    {
+        if (Level > MaxLevel)
+        {
+            Level = MaxLevel;
+
+            Debug.LogError($"{UpgradeType} level can't be more than {MaxLevel}. Level set to MaxLevel", this);
+        }
+        else if (Level < 0)
+        {
+            Level = 1;
+
+            Debug.Log($"{UpgradeType} level can't be less than 0. Level set to 1", this);
+        }
+    }
+
     public void Initialize(int level)
     {
-        if (level < 1 || level > MaxLevel)
-            throw new ArgumentOutOfRangeException(nameof(level));
+        if (level < 1)
+            throw new ArgumentOutOfRangeException($"{_upgradeType} level can't be less than zero");
+
+        if (level > MaxLevel)
+            throw new ArgumentOutOfRangeException($"{_upgradeType} level can't be more than {MaxLevel}");
 
         Level = level;
 

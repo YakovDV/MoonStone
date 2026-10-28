@@ -1,10 +1,11 @@
 using UnityEngine;
+using Zenject;
 
 public class PlayerMover : MonoBehaviour
 {
     private const float MinimumMagnitude = 0.000001f;
 
-    [SerializeField] private PlayerInputReader _inputReader;
+    [Inject] private PlayerInputReader _inputReader;
     [SerializeField] private PlayerGroundDetector _groundDetector;
     [SerializeField] private PlayerCollisionSolver _collisionSolver;
 

@@ -24,6 +24,7 @@ public class DepositIntegrityView : MonoBehaviour
     private void OnEnable()
     {
         _deposit.ValueChanged += OnValueChanged;
+        _text.alpha = 0f;
     }
 
     private void OnDisable()

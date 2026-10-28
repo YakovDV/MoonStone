@@ -7,9 +7,8 @@ public class ProgressView : MonoBehaviour
     [SerializeField] private char _separator = '/';
     [SerializeField] private string _name;
 
-    private float _goal;
-
     private Order _order;
+    private float _goal;
 
     private void OnDisable()
     {

@@ -1,13 +1,15 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class UpgradeShop : MonoBehaviour
 {
-    [SerializeField] private Wallet _wallet;
+    [Inject] private Wallet _wallet;
+    [Inject] private PanelSwitcher _panelSwitcher;
+    [Inject] private PlayerInputReader _playerInputReader;
+
     [SerializeField] private CameraMover _cameraMover;
-    [SerializeField] private PlayerInputReader _playerInputReader;
-    [SerializeField] private PanelSwitcher _panelSwitcher;
     [SerializeField] private Button _closeButton;
 
     [SerializeField] private UpgradeCard[] _upgradeCards;

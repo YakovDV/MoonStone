@@ -1,27 +1,29 @@
 using UnityEngine;
+using Zenject;
 
 public class Game : MonoBehaviour
 {
-    [SerializeField] private Wallet _wallet;
-    [SerializeField] private WalletView[] _walletViews;
+    [Inject] private Wallet _wallet;
 
-    [SerializeField] private RoverBase _roverBase;
-    [SerializeField] private BaseMoneySpawner _baseMoneySpawner;
-    [SerializeField] private Rover _rover;
-    [SerializeField] private MoneyCollector _moneyCollector;
-    [SerializeField] private UpgradeData _upgradeData;
+    [Inject] private Rover _rover;
+    [Inject] private RoverBase _roverBase;
 
-    [SerializeField] private PlayerInputReader _playerInputReader;
+    [Inject] private UpgradeData _upgradeData;
+    [Inject] private OrderConfig _config;
 
-    [SerializeField] private LevelPopulation _levelPopulation;
+    [Inject] private PanelSwitcher _panelSwitcher;
 
-    [SerializeField] private TerrainTrackMask _terrainTrackMask;
+    [Inject] private BaseMoneySpawner _baseMoneySpawner;
+    [Inject] private MoneyCollector _moneyCollector;
 
-    [SerializeField] private OrderConfig _config;
+    [Inject] private PlayerInputReader _playerInputReader;
+
+    [Inject] private LevelPopulation _levelPopulation;
+
+    [Inject] private TerrainTrackMask _terrainTrackMask;
+
     [SerializeField] private ProgressBar _progressBar;
     [SerializeField] private ProgressView _progressView;
-
-    [SerializeField] private PanelSwitcher _panelSwitcher;
 
     [SerializeField] private StartGamePanel _startGamePanel;
     [SerializeField] private HUDPanel _hudPanel;
@@ -35,10 +37,6 @@ public class Game : MonoBehaviour
     {
         _order = new(_config.TargetValue);
         _startGamePanel.Initilize(_config);
-
-        if (_wallet != null)
-            foreach (WalletView walletView in _walletViews)
-                walletView.SetWallet(_wallet);
 
         if (_progressBar != null)
             _progressBar.SetOrder(_order);
