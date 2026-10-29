@@ -1,0 +1,10 @@
+using Zenject;
+
+public class ProjectInstaller : MonoInstaller
+{
+    public override void InstallBindings()
+    {
+        Container.Bind<Wallet>().AsSingle();
+        Container.Bind<SaveService>().AsSingle();
+    }
+}

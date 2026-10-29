@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class StartGamePanel : UIPanel
 {
@@ -13,6 +14,8 @@ public class StartGamePanel : UIPanel
 
     [SerializeField] private Button _startButton;
 
+    private OrderConfig _config;
+
     public event Action StartReqested;
 
     private void OnEnable()
@@ -20,15 +23,26 @@ public class StartGamePanel : UIPanel
         _startButton?.onClick.AddListener(RequestStart);
     }
 
+    private void Start()
+    {
+        Initialize();
+    }
+
     private void OnDisable()
     {
         _startButton?.onClick.RemoveListener(RequestStart);
     }
 
-    public void Initilize(OrderConfig config)
+    [Inject]
+    private void Construct(OrderConfig config)
     {
-        _orderNumber.text = _orderText + config.Name;
-        _orderGoal.text = _orderGoalText + config.TargetValue.ToString();
+        _config = config;
+    }
+
+    private void Initialize()
+    {
+        _orderNumber.text = _orderText + _config.Name;
+        _orderGoal.text = _orderGoalText + _config.TargetValue.ToString();
     }
 
     private void RequestStart()

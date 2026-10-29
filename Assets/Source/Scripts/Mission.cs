@@ -12,7 +12,7 @@ public class Mission
         CurrentOrder.Completed += OnOrderCompleted;
     }
 
-    public void AddProgress(float value)
+    public void AddProgress(int value)
     {
         CurrentOrder.AddProgress(value);
     }

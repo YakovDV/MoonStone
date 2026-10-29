@@ -445,7 +445,6 @@ GameObject:
   - component: {fileID: 797224145937764095}
   - component: {fileID: 8787976256883507703}
   - component: {fileID: 6318077088415671585}
-  - component: {fileID: 2507523829377113653}
   - component: {fileID: 1035812129480616099}
   m_Layer: 10
   m_Name: ROVER 1
@@ -533,7 +532,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631a1324ce7391f459e6864bbff1210b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _trackMask: {fileID: 0}
   _trackSources:
   - {fileID: 5891195173692247661}
   - {fileID: 3541977108579798598}
@@ -560,7 +558,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a09b02d07e8b24390e5928295c0cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputReader: {fileID: 0}
   _groundDetector: {fileID: 935966056718360699}
   _collisionSolver: {fileID: 8806328893459720180}
   _speed: 8
@@ -682,18 +679,6 @@ MonoBehaviour:
   _upgradeType: 2
   _attractor: {fileID: 8787976256883507703}
   _upgradeConfig: {fileID: 11400000, guid: 1d568d217db8e5a41bbfd2466927139e, type: 2}
---- !u!114 &2507523829377113653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2285410969839539595}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f84a757406db88d47ae1a8d0ad363ddc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1035812129480616099
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,10 +6,9 @@ public class GameInstaller : MonoInstaller
     [SerializeField] private OrderConfig _orderConfig;
     [SerializeField] private UpgradeData _upgradeData;
 
+
     public override void InstallBindings()
     {
-        Container.Bind<Wallet>().AsSingle();
-
         Container.Bind<Rover>().FromComponentInHierarchy().AsSingle();
 
         Container.Bind<RoverBase>().FromComponentInHierarchy().AsSingle();

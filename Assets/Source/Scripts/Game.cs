@@ -4,11 +4,11 @@ using Zenject;
 public class Game : MonoBehaviour
 {
     [Inject] private Wallet _wallet;
+    [Inject] private SaveService _saveService;
 
     [Inject] private Rover _rover;
     [Inject] private RoverBase _roverBase;
 
-    [Inject] private UpgradeData _upgradeData;
     [Inject] private OrderConfig _config;
 
     [Inject] private PanelSwitcher _panelSwitcher;
@@ -31,12 +31,12 @@ public class Game : MonoBehaviour
     [SerializeField] private CompletePanel _completePanel;
 
     private Order _order;
+    private int _totalProgress;
     private int _remainingMoneyBonus;
 
     private void Awake()
     {
         _order = new(_config.TargetValue);
-        _startGamePanel.Initilize(_config);
 
         if (_progressBar != null)
             _progressBar.SetOrder(_order);
@@ -44,8 +44,9 @@ public class Game : MonoBehaviour
         if (_progressView != null)
             _progressView.SetOrder(_order);
 
-        _rover.Initialize(_upgradeData);
         _levelPopulation.Initialize();
+
+        _saveService.LoadWalletValue(_wallet);
     }
 
     private void Start()
@@ -65,7 +66,9 @@ public class Game : MonoBehaviour
         _completePanel.ExitRequested += OnExitRequested;
 
         _roverBase.ResourceDelivered += OnResourceDelivered;
+
         _moneyCollector.MoneyCollected += OnMoneyCollected;
+
         _order.Completed += OnOrderComleted;
     }
 
@@ -148,8 +151,12 @@ public class Game : MonoBehaviour
         _playerInputReader.DisableGameplayInput();
 
         _remainingMoneyBonus = _baseMoneySpawner.GetRemainingWorth();
-        _completePanel.ShowBonus(_remainingMoneyBonus);
+        _totalProgress += _order.Progress;
+
+        _completePanel.ShowResult(_remainingMoneyBonus, _totalProgress);
         _wallet.Add(_remainingMoneyBonus);
+
+        _saveService.SaveWalletValue(_wallet);
 
         _baseMoneySpawner.DespawnAll();
 

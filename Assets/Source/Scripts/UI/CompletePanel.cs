@@ -9,6 +9,8 @@ public class CompletePanel : UIPanel
     [SerializeField] private Button _exitButton;
     [SerializeField] private TextMeshProUGUI _bonus;
     [SerializeField] private string _bonusPreText;
+    [SerializeField] private TextMeshProUGUI _totalProgress;
+    [SerializeField] private string _totalProgressText;
 
     public event Action RestartRequested;
     public event Action ExitRequested;
@@ -25,9 +27,10 @@ public class CompletePanel : UIPanel
         _exitButton.onClick?.RemoveListener(RequestExit);
     }
 
-    public void ShowBonus(int value)
+    public void ShowResult(int bonus, int totalProgress)
     {
-        _bonus.text = _bonusPreText + value.ToString();
+        _bonus.text = _bonusPreText + bonus.ToString();
+        _totalProgress.text = _totalProgressText + totalProgress.ToString();
     }
 
     private void RequestRestart()

@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class Wallet
 {
@@ -6,11 +7,16 @@ public class Wallet
 
     public event Action<int> ValueChanged;
 
+    public void RestoreValue(int value)
+    {
+        Value = Mathf.Max(0, value);
+        ValueChanged?.Invoke(Value);
+    }
+
     public void Add(int value)
     {
-        if (Value + value <= 0)
+        if (value <= 0)
         {
-            Value = 0;
             return;
         }
 

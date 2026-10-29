@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 public class Rover : MonoBehaviour
 {
@@ -6,19 +7,26 @@ public class Rover : MonoBehaviour
     [SerializeField] private PlayerMover _playerMover;
     [SerializeField] private ResourceStorage _resourceStorage;
 
-    public void Initialize(UpgradeData upgradeData)
+    private UpgradeData _upgradeData;
+
+    private void Start()
     {
-        foreach (var upgradeableComponent in _upgradeableComponents)
-        {
-            if (upgradeData.TryGetLevel(upgradeableComponent.UpgradeType, out int level))
-                upgradeableComponent.Initialize(level);
-        }
+        Initialize();
     }
 
     public void ResetState()
     {
         _playerMover.ResetPosition();
         _resourceStorage.Clear();
+    }
+
+    private void Initialize()
+    {
+        foreach (var upgradeableComponent in _upgradeableComponents)
+        {
+            if (_upgradeData.TryGetLevel(upgradeableComponent.UpgradeType, out int level))
+                upgradeableComponent.Initialize(level);
+        }
     }
 
     public UpgradeableComponent GetUpgrade(UpgradeType type)
@@ -30,6 +38,12 @@ public class Rover : MonoBehaviour
         }
 
         return null;
+    }
+
+    [Inject]
+    private void Construct(UpgradeData upgradeData)
+    {
+        _upgradeData = upgradeData;
     }
 }
 

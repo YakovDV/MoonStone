@@ -1013,7 +1013,7 @@ MonoBehaviour:
     - Type: 1
       Level: 5
     - Type: 2
-      Level: 4
+      Level: 1
 --- !u!4 &422027139
 Transform:
   m_ObjectHideFlags: 0
@@ -22112,6 +22112,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 836283764049039433, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
+        type: 3}
+      propertyPath: m_text
+      value: increase attractor
+      objectReference: {fileID: 0}
     - target: {fileID: 975651753998583173, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
         type: 3}
       propertyPath: m_Pivot.x
@@ -22217,6 +22222,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 1363177657088364799, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3294061613484189995, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -22226,6 +22236,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540865437445932216, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4287514699189144038, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
         type: 3}
@@ -22251,6 +22266,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6848800639812602729, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7464293604506207768, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7859355238057235727, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262620236758702885, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
+        type: 3}
+      propertyPath: _totalProgress
+      value: 
+      objectReference: {fileID: 2120528186941821640}
+    - target: {fileID: 8262620236758702885, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
+        type: 3}
+      propertyPath: _totalProgressText
+      value: 'progress: '
       objectReference: {fileID: 0}
     - target: {fileID: 8331779774288066978, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
         type: 3}
@@ -22287,6 +22327,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3, type: 3}
+--- !u!114 &2120528186941821640 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5981954721143787678, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
+    type: 3}
+  m_PrefabInstance: {fileID: 2120528186941821639}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2219807052747798415
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22387,6 +22439,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _rayStartHeight
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 956016196631186628, guid: bfd9595f387ebfe4ab82d0f447cdb039,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 999123386547815441, guid: bfd9595f387ebfe4ab82d0f447cdb039,
         type: 3}
