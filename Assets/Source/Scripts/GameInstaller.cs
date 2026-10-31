@@ -4,7 +4,6 @@ using Zenject;
 public class GameInstaller : MonoInstaller
 {
     [SerializeField] private OrderConfig _orderConfig;
-    [SerializeField] private UpgradeData _upgradeData;
 
 
     public override void InstallBindings()
@@ -26,6 +25,5 @@ public class GameInstaller : MonoInstaller
         Container.Bind<TerrainTrackMask>().FromComponentInHierarchy().AsSingle();
 
         Container.BindInstance(_orderConfig);
-        Container.BindInstance(_upgradeData);
     }
 }

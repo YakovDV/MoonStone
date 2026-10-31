@@ -46,7 +46,11 @@ public class Game : MonoBehaviour
 
         _levelPopulation.Initialize();
 
-        _saveService.LoadWalletValue(_wallet);
+        SaveData saveData = _saveService.Load();
+
+        _wallet.RestoreValue(saveData.WalletValue);
+        _totalProgress = saveData.TotalProgress;
+        _rover.InitializeUpgrades(saveData.UpgradeData);
     }
 
     private void Start()
@@ -156,7 +160,11 @@ public class Game : MonoBehaviour
         _completePanel.ShowResult(_remainingMoneyBonus, _totalProgress);
         _wallet.Add(_remainingMoneyBonus);
 
-        _saveService.SaveWalletValue(_wallet);
+        _saveService.Save(
+            new(_wallet.Value,
+            _totalProgress,
+            _rover.GetUpgradeData())
+            );
 
         _baseMoneySpawner.DespawnAll();
 

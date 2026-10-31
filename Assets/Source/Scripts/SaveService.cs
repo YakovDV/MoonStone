@@ -1,14 +1,24 @@
+using System;
+
 public class SaveService
 {
-    private SaveData _saveData = new();
+    private SaveData _saveData;
 
-    public void SaveWalletValue(Wallet wallet)
+    public SaveService(SaveData initialData)
     {
-        _saveData.WalletValue = wallet.Value;
+        _saveData = initialData;
     }
 
-    public void LoadWalletValue(Wallet wallet)
+    public void Save(SaveData data)
     {
-        wallet.RestoreValue(_saveData.WalletValue);
+        if (data == null)
+            throw new ArgumentNullException(nameof(data));
+
+        _saveData = data;
+    }
+
+    public SaveData Load()
+    {
+        return _saveData;
     }
 }

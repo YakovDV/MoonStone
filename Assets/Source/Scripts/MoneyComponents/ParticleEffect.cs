@@ -2,13 +2,13 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class MoneyPickupEffect : MonoBehaviour
+public class ParticleEffect : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _particleSystem;
 
     private Coroutine _playCoroutine;
 
-    public event Action<MoneyPickupEffect> ReadyToReturn;
+    public event Action<ParticleEffect> ReadyToReturn;
 
     public void Play()
     {

@@ -17,7 +17,8 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] private float _slideGravity = 12f;
     [SerializeField] private float _maximumSlideSpeed = 20f;
 
-    private Transform _resetPosotion;
+    private Vector3 _resetPosotion;
+    private Quaternion _resetRotation;
 
     private Vector3 _inputDirection;
     private Quaternion _headingRotation;
@@ -31,7 +32,8 @@ public class PlayerMover : MonoBehaviour
     {
         _headingRotation = GetPlanarRotation(transform.rotation);
 
-        _resetPosotion = transform;
+        _resetPosotion = transform.position;
+        _resetRotation = transform.rotation;
 
         GroundInfo ground = _groundDetector.Detect(transform.position, transform.rotation, Vector3.down);
         IsGrounded = ground.IsGrounded;
@@ -49,7 +51,7 @@ public class PlayerMover : MonoBehaviour
 
     public void ResetPosition()
     {
-        transform.SetPositionAndRotation(_resetPosotion.position, _resetPosotion.rotation);
+        transform.SetPositionAndRotation(_resetPosotion, _resetRotation);
     }
 
     private void Move(Vector2 input, float deltaTime)

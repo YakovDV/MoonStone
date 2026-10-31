@@ -14,6 +14,8 @@ public class UpgradeShop : MonoBehaviour
 
     [SerializeField] private UpgradeCard[] _upgradeCards;
 
+    [SerializeField] private ParticleEffectPlayer _particleEffectPlayer;
+
     private Rover _rover;
 
     public event Action CantPurchase;
@@ -79,8 +81,6 @@ public class UpgradeShop : MonoBehaviour
 
         if (upgradeableComponent.CanUpgrade() == false)
         {
-            Debug.Log("Cant upgrade");
-
             CantUpgrade?.Invoke();
             return;
         }
@@ -89,27 +89,24 @@ public class UpgradeShop : MonoBehaviour
 
         if (_wallet.CanSpend(upgradeCost) == false)
         {
-            Debug.Log("Not enough money");
-
             CantPurchase?.Invoke();
             return;
         }
 
         if (_wallet.TrySpend(upgradeCost) == false)
         {
-            Debug.Log("Cant spend");
-
             CantPurchase?.Invoke();
             return;
         }
 
         if (upgradeableComponent.TryUpgrade() == false)
         {
-            Debug.Log("Must be upgraded");
 
             _wallet.Add(upgradeCost);
             CantUpgrade?.Invoke();
         }
+
+        _particleEffectPlayer.PlayEffectAtPoint(_rover.transform.position);
 
         RefreshCards();
     }
@@ -126,7 +123,7 @@ public class UpgradeShop : MonoBehaviour
                 continue;
             }
 
-            upgradeCard.UpdateView(component);
+            upgradeCard.UpdateView(component, _wallet.Value >= component.GetUpgradeCost());
         }
     }
 }

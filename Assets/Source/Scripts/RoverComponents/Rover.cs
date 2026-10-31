@@ -7,26 +7,33 @@ public class Rover : MonoBehaviour
     [SerializeField] private PlayerMover _playerMover;
     [SerializeField] private ResourceStorage _resourceStorage;
 
-    private UpgradeData _upgradeData;
-
-    private void Start()
-    {
-        Initialize();
-    }
-
     public void ResetState()
     {
         _playerMover.ResetPosition();
         _resourceStorage.Clear();
     }
 
-    private void Initialize()
+    public void InitializeUpgrades(UpgradeData upgradeData)
     {
         foreach (var upgradeableComponent in _upgradeableComponents)
         {
-            if (_upgradeData.TryGetLevel(upgradeableComponent.UpgradeType, out int level))
+            if (upgradeData.TryGetLevel(upgradeableComponent.UpgradeType, out int level))
                 upgradeableComponent.Initialize(level);
         }
+    }
+
+    public UpgradeData GetUpgradeData()
+    {
+        UpgradeEntry[] entries = new UpgradeEntry[_upgradeableComponents.Length];
+
+        for (int i = 0; i < _upgradeableComponents.Length; i++)
+        {
+            UpgradeableComponent component = _upgradeableComponents[i];
+
+            entries[i] = new UpgradeEntry(component.UpgradeType, component.Level);
+        }
+
+        return new UpgradeData(entries);
     }
 
     public UpgradeableComponent GetUpgrade(UpgradeType type)
@@ -38,12 +45,6 @@ public class Rover : MonoBehaviour
         }
 
         return null;
-    }
-
-    [Inject]
-    private void Construct(UpgradeData upgradeData)
-    {
-        _upgradeData = upgradeData;
     }
 }
 

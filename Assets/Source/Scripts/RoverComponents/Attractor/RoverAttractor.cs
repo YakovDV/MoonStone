@@ -3,12 +3,13 @@ using UnityEngine;
 
 public class RoverAttractor : MonoBehaviour
 {
-    [SerializeField] private float _magneticRadius = 5f;
     [SerializeField] private float _findingFrequency = 1f;
     [SerializeField] private LayerMask _attractableMask;
     [SerializeField] private int _maxHits = 16;
     [SerializeField] private ResourceStorage _resourceContainer;
     [SerializeField] private int _maxResourceTier = 0;
+
+    private float _magneticRadius = 5f;
 
     private Collider[] _hitBuffer;
 
@@ -40,6 +41,11 @@ public class RoverAttractor : MonoBehaviour
         _maxResourceTier = tier;
     }
 
+    public void SetRadius(float radius)
+    {
+        _magneticRadius = radius;
+    }
+
     private IEnumerator FindAttractable()
     {
         WaitForSeconds wait = new(_findingFrequency);
@@ -65,7 +71,7 @@ public class RoverAttractor : MonoBehaviour
             {
                 if (resource.Config.Tier > _maxResourceTier)
                 {
-                    Debug.LogError($"Resource without Config: {((Component)resource).name}",(Component)resource);
+                    Debug.LogError($"Resource without Config: {((Component)resource).name}", (Component)resource);
                     continue;
                 }
 

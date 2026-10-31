@@ -15,6 +15,10 @@ public class UpgradeCard : MonoBehaviour
 
     [SerializeField] private string _levelText = "lvl. ";
 
+    [SerializeField] private Image _maxUpgradeLevelImage;
+    [SerializeField] private Image _moneyIcon;
+    [SerializeField] private Image _notEnoughMoney;
+
     public event Action<UpgradeType> PurchaseRequested;
 
     public UpgradeType UpgradeType => _upgradeType;
@@ -29,10 +33,32 @@ public class UpgradeCard : MonoBehaviour
         _requestUpgrade.onClick.RemoveListener(OnUpgradeRequested);
     }
 
-    public void UpdateView(UpgradeableComponent upgradeableComponent)
+    public void UpdateView(UpgradeableComponent upgradeableComponent, bool isEnoughMoney)
     {
         _levelSlider.maxValue = upgradeableComponent.MaxLevel;
         _levelSlider.value = upgradeableComponent.Level;
+
+        if (upgradeableComponent.Level >= upgradeableComponent.MaxLevel)
+        {
+            _maxUpgradeLevelImage.enabled = true;
+            _moneyIcon.enabled = false;
+        }
+        else
+        {
+            _maxUpgradeLevelImage.enabled = false;
+            _moneyIcon.enabled = true;
+
+            if (isEnoughMoney == true)
+            {
+                _moneyIcon.enabled = true;
+                _notEnoughMoney.enabled = false;
+            }
+            else
+            {
+                _moneyIcon.enabled = false;
+                _notEnoughMoney.enabled = true;
+            }
+        }
 
         _currentLevel.text = _levelText + upgradeableComponent.Level.ToString();
         _cuerrentValue.text = upgradeableComponent.GetCurrentValue().ToString();

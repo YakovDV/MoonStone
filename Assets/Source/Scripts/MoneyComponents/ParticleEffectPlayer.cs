@@ -1,19 +1,19 @@
 using UnityEngine;
 
-public class MoneyPickupEffectPlayer : MonoBehaviour
+public class ParticleEffectPlayer : MonoBehaviour
 {
-    [SerializeField] private MoneyPickupEffectSpawner _spawner;
+    [SerializeField] private ParticleEffectSpawner _spawner;
 
     public void PlayEffectAtPoint(Vector3 position)
     {
-        MoneyPickupEffect effect = _spawner.Spawn(position);
+        ParticleEffect effect = _spawner.Spawn(position);
 
         effect.ReadyToReturn += OnReadyToReturn;
 
         effect.Play();
     }
 
-    private void OnReadyToReturn(MoneyPickupEffect effect)
+    private void OnReadyToReturn(ParticleEffect effect)
     {
         effect.ReadyToReturn -= OnReadyToReturn;
         _spawner.Despawn(effect);

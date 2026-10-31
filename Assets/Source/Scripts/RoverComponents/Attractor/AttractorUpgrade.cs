@@ -4,6 +4,7 @@ public class AttractorUpgrade : UpgradeableComponent
 {
     [SerializeField] private RoverAttractor _attractor;
     [SerializeField] private AttractorUpgradeConfig _upgradeConfig;
+    [SerializeField] private float _baseRadius = 5f;
 
     public override int MaxLevel => _upgradeConfig.MaxLevel;
 
@@ -24,5 +25,6 @@ public class AttractorUpgrade : UpgradeableComponent
     {
         int tier = _upgradeConfig.GetLevelData(level).MaxResourceTier;
         _attractor.SetMaxResourceTier(tier);
+        _attractor.SetRadius(_baseRadius + level);
     }
 }
