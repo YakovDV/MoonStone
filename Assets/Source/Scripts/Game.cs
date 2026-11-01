@@ -3,6 +3,8 @@ using Zenject;
 
 public class Game : MonoBehaviour
 {
+    [Inject] private SceneNavigator _sceneNavigator;
+
     [Inject] private Wallet _wallet;
     [Inject] private SaveService _saveService;
 
@@ -68,6 +70,7 @@ public class Game : MonoBehaviour
 
         _completePanel.RestartRequested += OnRestartRequested;
         _completePanel.ExitRequested += OnExitRequested;
+        _completePanel.NextRequested += OnNextRequested;
 
         _roverBase.ResourceDelivered += OnResourceDelivered;
 
@@ -86,6 +89,7 @@ public class Game : MonoBehaviour
 
         _completePanel.RestartRequested -= OnRestartRequested;
         _completePanel.ExitRequested -= OnExitRequested;
+        _completePanel.NextRequested -= OnNextRequested;
 
         _roverBase.ResourceDelivered -= OnResourceDelivered;
         _moneyCollector.MoneyCollected -= OnMoneyCollected;
@@ -127,6 +131,12 @@ public class Game : MonoBehaviour
         _rover.ResetState();
 
         StartOrder();
+    }
+
+    private void OnNextRequested()
+    {
+        if (_sceneNavigator.LoadNextScene() == false)
+            Debug.Log("No next scene.");
     }
 
     private void StartOrder()
