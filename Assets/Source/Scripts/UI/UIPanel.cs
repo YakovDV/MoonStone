@@ -8,7 +8,7 @@ public class UIPanel : MonoBehaviour
     private CanvasGroup _canvasGroup;
 
     public ScreenID ID => _id;
-    public bool IsActive;
+    public bool IsActive { get; private set;  }
 
     private void Awake()
     {

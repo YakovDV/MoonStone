@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -8,6 +6,7 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField] private MainMenuPanel _mainMenuPanel;
     [SerializeField] private SettingsPanel _settingPanel;
+    [SerializeField] private LeaderboardPanel _leaderboardPanel;
 
     private void Awake()
     {
@@ -21,6 +20,7 @@ public class MainMenu : MonoBehaviour
         _mainMenuPanel.SettingsRequested += OnSettingsRequested;
 
         _settingPanel.ReturnRequested += OnReturnRequested;
+        _leaderboardPanel.ReturnRequested += OnReturnRequested;
     }
 
     private void OnDisable()
@@ -30,6 +30,7 @@ public class MainMenu : MonoBehaviour
         _mainMenuPanel.SettingsRequested -= OnSettingsRequested;
 
         _settingPanel.ReturnRequested -= OnReturnRequested;
+        _leaderboardPanel.ReturnRequested -= OnReturnRequested;
     }
 
     private void OnStartRequested()
@@ -50,60 +51,5 @@ public class MainMenu : MonoBehaviour
     private void OnReturnRequested()
     {
         _panelSwitcher.Show(_panelSwitcher.PreviousScreen);
-    }
-}
-
-public class MainMenuPanel : UIPanel
-{
-    [SerializeField] private Button _startButton;
-    [SerializeField] private Button _leaderboardButton;
-    [SerializeField] private Button _settingsButton;
-
-    public event Action StartRequested;
-    public event Action LeaderboardRequested;
-    public event Action SettingsRequested;
-
-    private void OnEnable()
-    {
-        _startButton.onClick?.AddListener(RequestStart);
-        _leaderboardButton.onClick?.AddListener(RequestLeaderboard);
-        _settingsButton.onClick?.AddListener(RequestSettings);
-    }
-
-    private void RequestStart()
-    {
-        StartRequested?.Invoke();
-    }
-
-    private void RequestLeaderboard()
-    {
-        LeaderboardRequested?.Invoke();
-    }
-
-    private void RequestSettings()
-    {
-        SettingsRequested?.Invoke();
-    }
-}
-
-public class SettingsPanel : UIPanel
-{
-    [SerializeField] private Button _returnButton;
-
-    public event Action ReturnRequested;
-
-    private void OnEnable()
-    {
-        _returnButton.onClick?.AddListener(RequestReturn);
-    }
-
-    private void OnDisable()
-    {
-        _returnButton.onClick?.RemoveListener(RequestReturn);
-    }
-
-    private void RequestReturn()
-    {
-        ReturnRequested?.Invoke();
     }
 }
