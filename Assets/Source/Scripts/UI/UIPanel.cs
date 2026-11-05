@@ -8,6 +8,7 @@ public class UIPanel : MonoBehaviour
     private CanvasGroup _canvasGroup;
 
     public ScreenID ID => _id;
+    public bool IsActive;
 
     private void Awake()
     {
@@ -21,6 +22,7 @@ public class UIPanel : MonoBehaviour
         _canvasGroup.alpha = 1.0f;
         _canvasGroup.interactable = true;
         _canvasGroup.blocksRaycasts = true;
+        IsActive = true;
     }
 
     public void Close()
@@ -30,5 +32,6 @@ public class UIPanel : MonoBehaviour
         _canvasGroup.alpha = 0f;
         _canvasGroup.interactable = false;
         _canvasGroup.blocksRaycasts = false;
+        IsActive = false;
     }
 }

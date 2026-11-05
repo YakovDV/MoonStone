@@ -57,7 +57,7 @@ public class Game : MonoBehaviour
 
     private void Start()
     {
-        _panelSwitcher.Show(ScreenID.StartScreen);
+        _panelSwitcher.Show(ScreenID.LevelStartScreen);
     }
 
     private void OnEnable()
@@ -178,6 +178,6 @@ public class Game : MonoBehaviour
 
         _baseMoneySpawner.DespawnAll();
 
-        _panelSwitcher.Show(ScreenID.Complete);
+        _panelSwitcher.Show(ScreenID.LevelComplete);
     }
 }
