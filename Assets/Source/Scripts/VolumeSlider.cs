@@ -9,13 +9,21 @@ public class VolumeSlider : MonoBehaviour
     private const float DecibelMultiplier = 20f;
 
     [SerializeField] private AudioMixerGroup _audioMixerGroup;
-    [SerializeField] private string _channelName;
+    [SerializeField] private string _parameterName;
+
+    [SerializeField] private float _sliderDefaultValue;
 
     private Slider _slider;
 
     private void Awake()
     {
         _slider = GetComponent<Slider>();
+    }
+
+    private void Start()
+    {
+        _slider.SetValueWithoutNotify(_sliderDefaultValue);
+        ChangeVolume(_sliderDefaultValue);
     }
 
     private void OnEnable()
@@ -32,10 +40,10 @@ public class VolumeSlider : MonoBehaviour
     {
         if (value <= 0)
         {
-            _audioMixerGroup.audioMixer.SetFloat(_channelName, -80f);
+            _audioMixerGroup.audioMixer.SetFloat(_parameterName, -80f);
             return;
         }
 
-        _audioMixerGroup.audioMixer.SetFloat(_channelName, Mathf.Log10(value) * DecibelMultiplier);
+        _audioMixerGroup.audioMixer.SetFloat(_parameterName, Mathf.Log10(value) * DecibelMultiplier);
     }
 }
