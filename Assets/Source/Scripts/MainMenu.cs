@@ -40,7 +40,7 @@ public class MainMenu : MonoBehaviour
 
     private void OnLeaderboardRequested()
     {
-
+        _panelSwitcher.Show(ScreenID.Leaderboard);
     }
 
     private void OnSettingsRequested()

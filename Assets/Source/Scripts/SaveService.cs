@@ -2,23 +2,38 @@ using System;
 
 public class SaveService
 {
-    private SaveData _saveData;
+    private GameSaveData _gameSaveData;
+    private SettingsSaveData _settingsSaveData;
 
-    public SaveService(SaveData initialData)
+    public SaveService(GameSaveData initialData, SettingsSaveData settingsSaveData)
     {
-        _saveData = initialData;
+        _gameSaveData = initialData;
+        _settingsSaveData = settingsSaveData;
     }
 
-    public void Save(SaveData data)
+    public void SaveGameData(GameSaveData data)
     {
         if (data == null)
             throw new ArgumentNullException(nameof(data));
 
-        _saveData = data;
+        _gameSaveData = data;
     }
 
-    public SaveData Load()
+    public GameSaveData LoadGameData()
     {
-        return _saveData;
+        return _gameSaveData;
+    }
+
+    public void SaveAudioSettings(AudioSettingsSaveData data)
+    {
+        if (data == null)
+            throw new ArgumentNullException(nameof(data));
+
+        _settingsSaveData.SetAudioSettings(data);
+    }
+
+    public AudioSettingsSaveData LoadAudioSettingsData()
+    {
+        return _settingsSaveData.AudioSettingsSaveData;
     }
 }

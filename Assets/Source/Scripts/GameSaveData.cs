@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class SaveData
+public class GameSaveData
 {
     [SerializeField] private int _walletValue;
     [SerializeField] private int _totalProgress;
@@ -12,7 +12,7 @@ public class SaveData
     public int TotalProgress => _totalProgress;
     public UpgradeData UpgradeData => _upgradeData;
 
-    public SaveData(int walletValue,int totalProgress, UpgradeData upgradeData)
+    public GameSaveData(int walletValue,int totalProgress, UpgradeData upgradeData)
     {
         _walletValue = walletValue;
         _upgradeData = upgradeData;

@@ -1,17 +1,14 @@
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.UI;
+using Zenject;
 
 [RequireComponent(typeof(Slider))]
 
 public class VolumeSlider : MonoBehaviour
 {
-    private const float DecibelMultiplier = 20f;
-
-    [SerializeField] private AudioMixerGroup _audioMixerGroup;
     [SerializeField] private string _parameterName;
 
-    [SerializeField] private float _sliderDefaultValue;
+    [Inject] AudioVolumeSettings _audioVolumeSettings;
 
     private Slider _slider;
 
@@ -22,8 +19,8 @@ public class VolumeSlider : MonoBehaviour
 
     private void Start()
     {
-        _slider.SetValueWithoutNotify(_sliderDefaultValue);
-        ChangeVolume(_sliderDefaultValue);
+        float value = _audioVolumeSettings.GetVolume(_parameterName);
+        _slider.SetValueWithoutNotify(value);
     }
 
     private void OnEnable()
@@ -38,12 +35,6 @@ public class VolumeSlider : MonoBehaviour
 
     private void ChangeVolume(float value)
     {
-        if (value <= 0)
-        {
-            _audioMixerGroup.audioMixer.SetFloat(_parameterName, -80f);
-            return;
-        }
-
-        _audioMixerGroup.audioMixer.SetFloat(_parameterName, Mathf.Log10(value) * DecibelMultiplier);
+        _audioVolumeSettings.SetVolume(_parameterName, value);
     }
 }

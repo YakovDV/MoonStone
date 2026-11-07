@@ -48,7 +48,7 @@ public class Game : MonoBehaviour
 
         _levelPopulation.Initialize();
 
-        SaveData saveData = _saveService.Load();
+        GameSaveData saveData = _saveService.LoadGameData();
 
         _wallet.RestoreValue(saveData.WalletValue);
         _totalProgress = saveData.TotalProgress;
@@ -170,7 +170,7 @@ public class Game : MonoBehaviour
         _completePanel.ShowResult(_remainingMoneyBonus, _totalProgress);
         _wallet.Add(_remainingMoneyBonus);
 
-        _saveService.Save(
+        _saveService.SaveGameData(
             new(_wallet.Value,
             _totalProgress,
             _rover.GetUpgradeData())
