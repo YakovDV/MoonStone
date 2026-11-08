@@ -8,7 +8,7 @@ public class VolumeSlider : MonoBehaviour
 {
     [SerializeField] private string _parameterName;
 
-    [Inject] AudioVolumeSettings _audioVolumeSettings;
+    [Inject] private AudioVolumeSettings _audioVolumeSettings;
 
     private Slider _slider;
 

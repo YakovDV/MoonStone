@@ -87,3 +87,5 @@ MonoBehaviour:
       _level: 1
     - _type: 2
       _level: 1
+  _musicPlayer: {fileID: 6208889993917564615, guid: 5423c6c9918ccd14e96ebea7cf1dd3f1,
+    type: 3}
