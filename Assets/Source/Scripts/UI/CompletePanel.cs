@@ -44,7 +44,7 @@ public class CompletePanel : UIPanel
 
     private void RequestExit()
     {
-        RestartRequested?.Invoke();
+        ExitRequested?.Invoke();
     }
 
     private void RequestNext()

@@ -11,6 +11,8 @@ public class ProjectInstaller : MonoInstaller
     [SerializeField] private MusicPlayer _musicPlayer;
     [SerializeField] private SFXPlayer _sfxPlayer;
 
+    [SerializeField] private SceneCatalog _sceneCatalog;
+
     public override void InstallBindings()
     {
         Container.Bind<SaveService>().AsSingle().WithArguments(new GameSaveData(0, 0, _initialUpgradeData), new SettingsSaveData(_audioSettingsSaveData));
@@ -20,7 +22,9 @@ public class ProjectInstaller : MonoInstaller
         Container.Bind<MusicPlayer>().FromComponentInNewPrefab(_musicPlayer).AsSingle().NonLazy();
         Container.Bind<SFXPlayer>().FromComponentInNewPrefab(_sfxPlayer).AsSingle();
 
+        Container.BindInstance(_sceneCatalog);
         Container.Bind<SceneNavigator>().AsSingle();
+
         Container.Bind<Wallet>().AsSingle();
     }
 }

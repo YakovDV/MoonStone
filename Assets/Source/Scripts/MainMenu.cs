@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 public class MainMenu : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private MainMenuPanel _mainMenuPanel;
     [SerializeField] private SettingsPanel _settingPanel;
     [SerializeField] private LeaderboardPanel _leaderboardPanel;
+
+    [Inject] private SceneNavigator _sceneNavigator;
 
     private void Awake()
     {
@@ -35,7 +38,7 @@ public class MainMenu : MonoBehaviour
 
     private void OnStartRequested()
     {
-
+        _sceneNavigator.LoadScene(SceneID.Level01);
     }
 
     private void OnLeaderboardRequested()

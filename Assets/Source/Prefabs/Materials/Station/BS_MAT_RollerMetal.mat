@@ -100,6 +100,9 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
+    - _EmissionPulseAmount: 0.2
+    - _EmissionPulsePhase: 0
+    - _EmissionPulseSpeed: 0.7
     - _EnvironmentReflections: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -134,7 +137,7 @@ Material:
     - _BaseColor: {r: 0.5271128, g: 0.5468542, b: 0.5563933, a: 1}
     - _Color: {r: 0.5271127, g: 0.5468542, b: 0.5563932, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _ShadowColor: {r: 0.39999998, g: 0.45, b: 0.54999995, a: 1}
+    - _ShadowColor: {r: 0.18214285, g: 0.20535715, b: 0.25, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

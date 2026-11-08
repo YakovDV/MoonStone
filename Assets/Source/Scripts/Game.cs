@@ -32,6 +32,8 @@ public class Game : MonoBehaviour
     [SerializeField] private PausePanel _pausePanel;
     [SerializeField] private CompletePanel _completePanel;
 
+    [SerializeField] private SceneID _nextSceneID;
+
     private Order _order;
     private int _totalProgress;
     private int _remainingMoneyBonus;
@@ -47,6 +49,8 @@ public class Game : MonoBehaviour
             _progressView.SetOrder(_order);
 
         _levelPopulation.Initialize();
+
+        Debug.Log("Scene initialized");
 
         GameSaveData saveData = _saveService.LoadGameData();
 
@@ -120,6 +124,8 @@ public class Game : MonoBehaviour
 
         Time.timeScale = 1f;
         _playerInputReader.DisableGameplayInput();
+
+        _sceneNavigator.LoadScene(SceneID.MainMenu);
     }
 
     private void OnRestartRequested()
@@ -135,8 +141,7 @@ public class Game : MonoBehaviour
 
     private void OnNextRequested()
     {
-        if (_sceneNavigator.LoadNextScene() == false)
-            Debug.Log("No next scene.");
+        _sceneNavigator.LoadScene(_nextSceneID);
     }
 
     private void StartOrder()

@@ -117,14 +117,14 @@ Material:
     - _RealtimeShadowSoftness: 0.04
     - _RealtimeShadowThreshold: 0.5
     - _ReceiveShadows: 1
-    - _ShadowSoftness: 0.195
+    - _ShadowSoftness: 0.128
     - _ShadowThreshold: 0.62
     - _Smoothness: 0.07999998
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SpecularIntensity: 0.46
     - _SpecularSize: 0.16
-    - _SpecularSoftness: 0.25
+    - _SpecularSoftness: 0.065
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
