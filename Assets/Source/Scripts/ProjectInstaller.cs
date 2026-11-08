@@ -9,6 +9,7 @@ public class ProjectInstaller : MonoInstaller
     [SerializeField] private UpgradeData _initialUpgradeData;
 
     [SerializeField] private MusicPlayer _musicPlayer;
+    [SerializeField] private SFXPlayer _sfxPlayer;
 
     public override void InstallBindings()
     {
@@ -17,6 +18,7 @@ public class ProjectInstaller : MonoInstaller
         Container.BindInterfacesTo<SettingsInitializer>().AsSingle();
 
         Container.Bind<MusicPlayer>().FromComponentInNewPrefab(_musicPlayer).AsSingle().NonLazy();
+        Container.Bind<SFXPlayer>().FromComponentInNewPrefab(_sfxPlayer).AsSingle();
 
         Container.Bind<SceneNavigator>().AsSingle();
         Container.Bind<Wallet>().AsSingle();

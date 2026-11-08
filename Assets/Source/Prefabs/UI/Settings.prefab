@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 1431485792481915496}
   - component: {fileID: 7940365313090140044}
   - component: {fileID: 5761477591517687484}
+  - component: {fileID: 2352786930986740816}
   m_Layer: 5
   m_Name: Return
   m_TagString: Untagged
@@ -157,6 +158,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2352786930986740816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518527844324452461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 379afb6d59e5ea54a8af495f10acad7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxID: 0
 --- !u!1 &911572896156513096
 GameObject:
   m_ObjectHideFlags: 0
@@ -1421,10 +1435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d809486d2781a4796b9df249b24f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioMixerGroup: {fileID: -5846688480788474933, guid: 29e9e6279a868ec4496d1d37842104a4,
-    type: 2}
   _parameterName: SFXVolume
-  _sliderDefaultValue: 0.8
 --- !u!1 &4345006561569493493
 GameObject:
   m_ObjectHideFlags: 0
@@ -1528,9 +1539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d809486d2781a4796b9df249b24f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioMixerGroup: {fileID: 24300002, guid: 29e9e6279a868ec4496d1d37842104a4, type: 2}
   _parameterName: MasterVolume
-  _sliderDefaultValue: 0.8
 --- !u!1 &4875701432709014866
 GameObject:
   m_ObjectHideFlags: 0
@@ -1670,10 +1679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d809486d2781a4796b9df249b24f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioMixerGroup: {fileID: -9220703323970425613, guid: 29e9e6279a868ec4496d1d37842104a4,
-    type: 2}
   _parameterName: MusicVolume
-  _sliderDefaultValue: 0.8
 --- !u!1 &5755454943168033522
 GameObject:
   m_ObjectHideFlags: 0
