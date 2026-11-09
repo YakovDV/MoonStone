@@ -3,6 +3,7 @@ using UnityEngine;
 public sealed class CrusherEffector : MonoBehaviour
 {
     [SerializeField] private ParticleSystem[] _effects;
+    [SerializeField] private AudioSource _audioEffect;
 
     private ParticleSystem _current;
 
@@ -25,6 +26,7 @@ public sealed class CrusherEffector : MonoBehaviour
 
         _current = effect;
         _current.Play();
+        _audioEffect.Play();
     }
 
     public void Stop()
@@ -34,5 +36,7 @@ public sealed class CrusherEffector : MonoBehaviour
 
         _current.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         _current = null;
+
+        _audioEffect.Stop();
     }
 }

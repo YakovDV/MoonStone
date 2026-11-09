@@ -12,6 +12,7 @@ public class ProjectInstaller : MonoInstaller
     [SerializeField] private SFXPlayer _sfxPlayer;
 
     [SerializeField] private SceneCatalog _sceneCatalog;
+    [SerializeField] private ScreenFader _sceneFader;
 
     public override void InstallBindings()
     {
@@ -23,6 +24,7 @@ public class ProjectInstaller : MonoInstaller
         Container.Bind<SFXPlayer>().FromComponentInNewPrefab(_sfxPlayer).AsSingle();
 
         Container.BindInstance(_sceneCatalog);
+        Container.BindInstance(_sceneFader);
         Container.Bind<SceneNavigator>().AsSingle();
 
         Container.Bind<Wallet>().AsSingle();

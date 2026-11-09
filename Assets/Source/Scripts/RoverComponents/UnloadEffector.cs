@@ -3,11 +3,13 @@ using UnityEngine;
 public class UnloadEffector : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _effect;
+    [SerializeField] private AudioSource _audio;
 
     public void Play(Vector3 target)
     {
         AimAt(target);
         _effect.Play();
+        _audio.Play();
     }
 
     private void AimAt(Vector3 target)
