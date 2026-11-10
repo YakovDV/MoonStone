@@ -78,7 +78,7 @@ MonoBehaviour:
   _audioMixer: {fileID: 24100000, guid: 29e9e6279a868ec4496d1d37842104a4, type: 2}
   _audioSettingsSaveData:
     _masterVolume: 0.8
-    _musicVolume: 0.8
+    _musicVolume: 0.5
     _sfxVolume: 0.8
   _initialUpgradeData:
     _upgrades:

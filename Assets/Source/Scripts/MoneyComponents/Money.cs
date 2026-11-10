@@ -10,7 +10,7 @@ public class Money : MonoBehaviour, IAttractable
     private Rigidbody _rigidbody;
     private Transform _target;
 
-    public int Worth {  get; private set; }
+    public int Worth { get; private set; }
 
     public event Action<Money> Collected;
 

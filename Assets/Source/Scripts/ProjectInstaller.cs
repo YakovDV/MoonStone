@@ -21,7 +21,7 @@ public class ProjectInstaller : MonoInstaller
         Container.BindInterfacesTo<SettingsInitializer>().AsSingle();
 
         Container.Bind<MusicPlayer>().FromComponentInNewPrefab(_musicPlayer).AsSingle().NonLazy();
-        Container.Bind<SFXPlayer>().FromComponentInNewPrefab(_sfxPlayer).AsSingle();
+        Container.Bind<SFXPlayer>().FromComponentInNewPrefab(_sfxPlayer).AsSingle().NonLazy();
 
         Container.BindInstance(_sceneCatalog);
         Container.BindInstance(_sceneFader);

@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 5064551933308750930}
   - component: {fileID: 7971817306711787785}
   - component: {fileID: 2102825211434623944}
+  - component: {fileID: 2920948836743819532}
   m_Layer: 11
   m_Name: CommonStoneResource
   m_TagString: Untagged
@@ -237,6 +238,19 @@ MonoBehaviour:
   - {fileID: 6767173571385504112}
   - {fileID: 6586930518743139161}
   _attractionSpeed: 15
+--- !u!114 &2920948836743819532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649951129906400579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c736a7954bdb14fad366995cad77b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxID: 4
 --- !u!1 &3497217059478112954
 GameObject:
   m_ObjectHideFlags: 0

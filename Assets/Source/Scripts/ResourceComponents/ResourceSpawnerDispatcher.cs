@@ -4,6 +4,7 @@ using UnityEngine;
 
 public sealed class ResourceSpawnerDispatcher : MonoBehaviour
 {
+    [SerializeField] private SpatialSFXPlayer _spatialSFXPlayer;
     [SerializeField] private ResourceSpawnerLink[] _resourceSpawnerLinks;
     [SerializeField] private float _explosionForce = 20f;
     [SerializeField] private float _explosionRadius = 10f;
@@ -26,6 +27,11 @@ public sealed class ResourceSpawnerDispatcher : MonoBehaviour
 
             Resource resource = spawner.Spawn(spawnPoint);
             resource.Initialize(config);
+
+            if (resource.TryGetComponent(out ResourceEffector effector))
+            {
+                effector.Initialize(_spatialSFXPlayer);
+            }
 
             resource.ResourceConsumed += ReturnResource;
 

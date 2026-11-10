@@ -18,8 +18,8 @@ public class UpgradeShop : MonoBehaviour
 
     private Rover _rover;
 
-    public event Action CantPurchase;
-    public event Action CantUpgrade;
+    public event Action PurchaseFailed;
+    public event Action SuccsessfulPurchase;
 
     private void OnEnable()
     {
@@ -81,7 +81,7 @@ public class UpgradeShop : MonoBehaviour
 
         if (upgradeableComponent.CanUpgrade() == false)
         {
-            CantUpgrade?.Invoke();
+            PurchaseFailed?.Invoke();
             return;
         }
 
@@ -89,13 +89,13 @@ public class UpgradeShop : MonoBehaviour
 
         if (_wallet.CanSpend(upgradeCost) == false)
         {
-            CantPurchase?.Invoke();
+            PurchaseFailed?.Invoke();
             return;
         }
 
         if (_wallet.TrySpend(upgradeCost) == false)
         {
-            CantPurchase?.Invoke();
+            PurchaseFailed?.Invoke();
             return;
         }
 
@@ -103,10 +103,11 @@ public class UpgradeShop : MonoBehaviour
         {
 
             _wallet.Add(upgradeCost);
-            CantUpgrade?.Invoke();
+            PurchaseFailed?.Invoke();
         }
 
         _particleEffectPlayer.PlayEffectAtPoint(_rover.transform.position);
+        SuccsessfulPurchase.Invoke();
 
         RefreshCards();
     }

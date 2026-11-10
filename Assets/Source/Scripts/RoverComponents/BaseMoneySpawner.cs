@@ -12,7 +12,7 @@ public class BaseMoneySpawner : MonoBehaviour
     [SerializeField] private float _maxForce = 500f;
     [SerializeField] private int _moneyWorth = 100;
 
-    [SerializeField] private ParticleEffectPlayer _effectPlayer;
+    [SerializeField] private MoneyEffector _effectPlayer;
 
     private int _remainingValue;
     private Coroutine _spawnCoroutine;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class DepositSpawnDispatcher : MonoBehaviour
     [SerializeField] private DepositSpawnZone[] _spawnZones;
 
     private Dictionary<DepositConfig, UniversalSpawner<Deposit>> _spawners;
+
+    public event Action<Vector3> DepositDestroyedAtPoint;
 
     private void Awake()
     {
@@ -34,7 +37,7 @@ public class DepositSpawnDispatcher : MonoBehaviour
             Deposit deposit = spawner.Spawn(spawnPoint);
             deposit.Initialize(config, _resourceSpawnerDispatcher);
 
-            deposit.Destroyed += ReturnDeposit;
+            deposit.Destroyed += OnDepositDestroyed;
         }
     }
 
@@ -49,14 +52,20 @@ public class DepositSpawnDispatcher : MonoBehaviour
 
     private Vector3 CalculateSpawnPoint(BoxCollider zone)
     {
-        Vector3 point = new(Random.Range(-zone.size.x * 0.5f, zone.size.x * 0.5f), 0f, Random.Range(-zone.size.z * 0.5f, zone.size.z * 0.5f));
+        Vector3 point = new(UnityEngine.Random.Range(-zone.size.x * 0.5f, zone.size.x * 0.5f), 0f, UnityEngine.Random.Range(-zone.size.z * 0.5f, zone.size.z * 0.5f));
 
         return zone.transform.TransformPoint(point);
     }
 
+    public void OnDepositDestroyed(Deposit deposit)
+    {
+        DepositDestroyedAtPoint.Invoke(deposit.transform.position);
+        ReturnDeposit(deposit);
+    }
+
     private void ReturnDeposit(Deposit deposit)
     {
-        deposit.Destroyed -= ReturnDeposit;
+        deposit.Destroyed -= OnDepositDestroyed;
 
         DepositConfig config = deposit.Config;
 
