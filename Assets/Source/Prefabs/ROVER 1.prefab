@@ -25665,7 +25665,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5846688480788474933, guid: 29e9e6279a868ec4496d1d37842104a4,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: a3e054b17aafb19428347f1a125f628b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6c7e5cb78c7cbee41b0f690884e38817, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -30869,10 +30869,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5846688480788474933, guid: 29e9e6279a868ec4496d1d37842104a4,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: ed23840e6ca6f2746a071bf2aa2bf678, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ae4109271aeee674fb362c81a647f92c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.8
-  m_Pitch: 0
+  m_Volume: 1
+  m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -30915,7 +30915,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.5
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -36225,6 +36225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerMover: {fileID: 8656055639987895447}
   _audioSource: {fileID: 3835911256852121821}
+  _fadeTime: 0.8
 --- !u!82 &3835911256852121821
 AudioSource:
   m_ObjectHideFlags: 0
@@ -36236,7 +36237,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5846688480788474933, guid: 29e9e6279a868ec4496d1d37842104a4,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 296dd921b367cb544bca4646f202c4a4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 834b49f5b5f752247a8a6d8320bdf42c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

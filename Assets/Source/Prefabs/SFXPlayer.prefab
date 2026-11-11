@@ -48,11 +48,11 @@ MonoBehaviour:
   _audioSource: {fileID: 7770022730351560984}
   _sounds:
   - _id: 0
-    _clip: {fileID: 8300000, guid: e309ba1daa47353459553cfc27a724a0, type: 3}
+    _clip: {fileID: 8300000, guid: 8a98cf1932041f5439cfc9927cb34e9f, type: 3}
   - _id: 1
-    _clip: {fileID: 8300000, guid: 15641ec1b49b81e409d0d93e64787bd6, type: 3}
+    _clip: {fileID: 8300000, guid: 2cccb2f168904dd4697d296a69148371, type: 3}
   - _id: 2
-    _clip: {fileID: 8300000, guid: 34c638d8d99ccfd44a261f13505ab317, type: 3}
+    _clip: {fileID: 8300000, guid: af7ebb60658b7e84499631ecc3ef112f, type: 3}
 --- !u!82 &7770022730351560984
 AudioSource:
   m_ObjectHideFlags: 0

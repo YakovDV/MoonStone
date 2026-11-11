@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -31,6 +32,7 @@ public class Game : MonoBehaviour
     [SerializeField] private HUDPanel _hudPanel;
     [SerializeField] private PausePanel _pausePanel;
     [SerializeField] private CompletePanel _completePanel;
+    [SerializeField] private SettingsPanel _settingsPanel;
 
     [SerializeField] private SceneID _nextSceneID;
 
@@ -71,10 +73,13 @@ public class Game : MonoBehaviour
 
         _pausePanel.ResumeRequested += OnResumeRequested;
         _pausePanel.ExitRequested += OnExitRequested;
+        _pausePanel.SettingsRequested += OnSettingsRequested;
 
         _completePanel.RestartRequested += OnRestartRequested;
         _completePanel.ExitRequested += OnExitRequested;
         _completePanel.NextRequested += OnNextRequested;
+
+        _settingsPanel.ReturnRequested += OnReturnRequested;
 
         _roverBase.ResourceDelivered += OnResourceDelivered;
 
@@ -90,10 +95,13 @@ public class Game : MonoBehaviour
 
         _pausePanel.ResumeRequested -= OnResumeRequested;
         _pausePanel.ExitRequested -= OnExitRequested;
+        _pausePanel.SettingsRequested -= OnSettingsRequested;
 
         _completePanel.RestartRequested -= OnRestartRequested;
         _completePanel.ExitRequested -= OnExitRequested;
         _completePanel.NextRequested -= OnNextRequested;
+
+        _settingsPanel.ReturnRequested += OnReturnRequested;
 
         _roverBase.ResourceDelivered -= OnResourceDelivered;
         _moneyCollector.MoneyCollected -= OnMoneyCollected;
@@ -115,6 +123,16 @@ public class Game : MonoBehaviour
     {
         _panelSwitcher.Show(ScreenID.HUD);
         Time.timeScale = 1f;
+    }
+
+    private void OnSettingsRequested()
+    {
+        _panelSwitcher.Show(ScreenID.Settings);
+    }
+
+    private void OnReturnRequested()
+    {
+        _panelSwitcher.Show(_panelSwitcher.PreviousScreen);
     }
 
     private void OnExitRequested()
