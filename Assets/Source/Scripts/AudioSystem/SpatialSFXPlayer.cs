@@ -46,7 +46,7 @@ public class SpatialSFXPlayer : MonoBehaviour
 
         effect.ReadyToReturn += OnReadyToReturn;
 
-        SFXSettings settingsToApply = settings == null ? _standartSettings : settings;
+        SFXSettings settingsToApply = settings == null ? _standartPlaybackSettings : settings;
         effect.ApplySettings(settingsToApply);
 
         effect.Play(clip);
