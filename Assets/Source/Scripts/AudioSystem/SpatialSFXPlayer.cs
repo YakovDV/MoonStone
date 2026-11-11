@@ -5,6 +5,7 @@ public class SpatialSFXPlayer : MonoBehaviour
 {
     [SerializeField] private AudioEmitterSpawner _audioEmitterSpawner;
     [SerializeField] private SFX[] _sounds;
+    [SerializeField] private SFXSettings _standartPlaybackSettings;
     [SerializeField] private int _maxSoundsCount;
     [SerializeField, Min(0f)] private float _minSpawnInterval = 0.08f;
 
@@ -45,10 +46,8 @@ public class SpatialSFXPlayer : MonoBehaviour
 
         effect.ReadyToReturn += OnReadyToReturn;
 
-        if (settings != null)
-        {
-            effect.ApplySettings(settings);
-        }
+        SFXSettings settingsToApply = settings == null ? _standartSettings : settings;
+        effect.ApplySettings(settingsToApply);
 
         effect.Play(clip);
 

@@ -1198,6 +1198,11 @@ MonoBehaviour:
   _particleEffectPlayer: {fileID: 757878996}
   _spatialSFXPlayer: {fileID: 1606208652}
   sfxID: 5
+  _sfxSettings:
+    _volume: 1
+    _pitch: 1
+    _randomizePitch: 0
+    _pitchRange: {x: 0.9, y: 1.1}
 --- !u!1 &816370141
 GameObject:
   m_ObjectHideFlags: 0
@@ -1268,6 +1273,11 @@ MonoBehaviour:
   _particleEffectPlayer: {fileID: 1482887137}
   _spatialSFXPlayer: {fileID: 1606208652}
   sfxID: 3
+  _sfxSettings:
+    _volume: 1
+    _pitch: 1
+    _randomizePitch: 0
+    _pitchRange: {x: 0.9, y: 1.1}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2207,6 +2217,7 @@ MonoBehaviour:
   - _id: 5
     _clip: {fileID: 8300000, guid: ccb7f419c1dba5a4b99f9931bea38ed8, type: 3}
   _maxSoundsCount: 5
+  _minSpawnInterval: 0.08
 --- !u!224 &1638565606 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5800450420592662825, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
@@ -3268,7 +3279,7 @@ PrefabInstance:
     - target: {fileID: 1034238096814766725, guid: bfd9595f387ebfe4ab82d0f447cdb039,
         type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1403160809321651942, guid: bfd9595f387ebfe4ab82d0f447cdb039,
         type: 3}
@@ -3340,6 +3351,11 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 834b49f5b5f752247a8a6d8320bdf42c, type: 3}
+    - target: {fileID: 3835911256852121821, guid: bfd9595f387ebfe4ab82d0f447cdb039,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5923961478975365721, guid: bfd9595f387ebfe4ab82d0f447cdb039,
         type: 3}
       propertyPath: m_Camera
