@@ -4,6 +4,7 @@ using UnityEngine;
 public class ResourceEffector : MonoBehaviour
 {
     [SerializeField] private SFXID _sfxID;
+    [SerializeField] private SFXSettings _sfxSettings;
 
     private SpatialSFXPlayer _sfxPlayer;
     private Resource _resource;
@@ -30,6 +31,6 @@ public class ResourceEffector : MonoBehaviour
 
     private void OnResourceConsumed(Resource resource)
     {
-        _sfxPlayer.PlayEffectAtPoint(resource.transform.position, _sfxID);
+        _sfxPlayer.PlayEffectAtPoint(resource.transform.position, _sfxID, _sfxSettings);
     }
 }

@@ -23,6 +23,13 @@ public class AudioEmitter : MonoBehaviour
         _playCoroutine = StartCoroutine(ReturnAfterEffect());
     }
 
+    public void ApplySettings(SFXSettings settings)
+    {
+        _audioSource.volume = settings.Volume;
+
+        _audioSource.pitch = settings.RandomizePitch ? UnityEngine.Random.Range(settings.PitchRange.x, settings.PitchRange.y) : settings.Pitch;
+    }
+
     private IEnumerator ReturnAfterEffect()
     {
         _audioSource.Play();

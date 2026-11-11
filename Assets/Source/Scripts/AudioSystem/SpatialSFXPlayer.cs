@@ -12,7 +12,7 @@ public class SpatialSFXPlayer : MonoBehaviour
 
     private readonly Dictionary<SFXID, float> _nextAllowedTime = new();
 
-    public void PlayEffectAtPoint(Vector3 position, SFXID id)
+    public void PlayEffectAtPoint(Vector3 position, SFXID id, SFXSettings settings = null)
     {
         if (_soundsCount >= _maxSoundsCount)
             return;
@@ -44,6 +44,12 @@ public class SpatialSFXPlayer : MonoBehaviour
         AudioEmitter effect = _audioEmitterSpawner.Spawn(position);
 
         effect.ReadyToReturn += OnReadyToReturn;
+
+        if (settings != null)
+        {
+            effect.ApplySettings(settings);
+        }
+
         effect.Play(clip);
 
         _soundsCount++;
