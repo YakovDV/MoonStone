@@ -6,6 +6,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private PanelSwitcher _panelSwitcher;
 
     [SerializeField] private MainMenuPanel _mainMenuPanel;
+    [SerializeField] private LevelSelectPanel _levelSelectPanel;
     [SerializeField] private SettingsPanel _settingPanel;
     [SerializeField] private LeaderboardPanel _leaderboardPanel;
 
@@ -22,6 +23,7 @@ public class MainMenu : MonoBehaviour
         _mainMenuPanel.LeaderboardRequested += OnLeaderboardRequested;
         _mainMenuPanel.SettingsRequested += OnSettingsRequested;
 
+        _levelSelectPanel.ReturnRequested += OnReturnRequested;
         _settingPanel.ReturnRequested += OnReturnRequested;
         _leaderboardPanel.ReturnRequested += OnReturnRequested;
     }
@@ -32,13 +34,14 @@ public class MainMenu : MonoBehaviour
         _mainMenuPanel.LeaderboardRequested -= OnLeaderboardRequested;
         _mainMenuPanel.SettingsRequested -= OnSettingsRequested;
 
+        _levelSelectPanel.ReturnRequested -= OnReturnRequested;
         _settingPanel.ReturnRequested -= OnReturnRequested;
         _leaderboardPanel.ReturnRequested -= OnReturnRequested;
     }
 
     private void OnStartRequested()
     {
-        _sceneNavigator.LoadScene(SceneID.Level01);
+        _panelSwitcher.Show(ScreenID.LevelSelection);
     }
 
     private void OnLeaderboardRequested()

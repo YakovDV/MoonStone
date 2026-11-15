@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8bebd0e9927cab4fb1c2f65ef7c8f16, type: 3}
   m_Name: TestOrder2
   m_EditorClassIdentifier: 
+  RequiredProgress: 200
   TargetValue: 1000
   Name: Test2
+  Description: 

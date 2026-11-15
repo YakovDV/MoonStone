@@ -24,6 +24,11 @@ public class SaveService
         return _gameSaveData;
     }
 
+    public int GetProgress()
+    {
+        return _gameSaveData.TotalProgress;
+    }
+
     public void SaveAudioSettings(AudioSettingsSaveData data)
     {
         if (data == null)
