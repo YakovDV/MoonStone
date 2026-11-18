@@ -7,8 +7,14 @@ public class ParticleEffect : MonoBehaviour
     [SerializeField] private ParticleSystem _particleSystem;
 
     private Coroutine _playCoroutine;
+    private WaitForSeconds _returnDelay;
 
     public event Action<ParticleEffect> ReadyToReturn;
+
+    private void Awake()
+    {
+        _returnDelay = new(_particleSystem.main.duration);
+    }
 
     public void Play()
     {
@@ -23,11 +29,9 @@ public class ParticleEffect : MonoBehaviour
 
     private IEnumerator ReturnAfterEffect()
     {
-        WaitForSeconds wait = new(_particleSystem.main.duration);
-
         _particleSystem.Play();
 
-        yield return wait;
+        yield return _returnDelay;
 
         ReadyToReturn?.Invoke(this);
     }

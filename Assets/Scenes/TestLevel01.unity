@@ -2258,6 +2258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88bd5c9d78917cb419dfdecc3d3d639e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _targetFramerate: -1
   _progressBar: {fileID: 1479104825}
   _progressView: {fileID: 312944824}
   _startGamePanel: {fileID: 1023833034}
@@ -3139,6 +3140,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -100
       objectReference: {fileID: 0}
+    - target: {fileID: 2575277101720189046, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2612789851781169197, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
         type: 3}
       propertyPath: m_IsActive
@@ -3188,6 +3194,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontSizeBase
       value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990916649629695268, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3254282553158038138, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
         type: 3}
@@ -3267,6 +3278,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3465300440094196161, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
         type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3465300440094196161, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
+        type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 6
       objectReference: {fileID: 0}
@@ -3294,6 +3310,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: bonus
+      objectReference: {fileID: 0}
+    - target: {fileID: 3726465383386889001, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3726465383386889001, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
         type: 3}
@@ -3498,6 +3519,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5981954721143787678, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
         type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981954721143787678, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
+        type: 3}
       propertyPath: m_HorizontalAlignment
       value: 1
       objectReference: {fileID: 0}
@@ -3526,6 +3552,11 @@ PrefabInstance:
       propertyPath: _panels.Array.data[5]
       value: 
       objectReference: {fileID: 2120528186941821640}
+    - target: {fileID: 6287096215572973363, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
+        type: 3}
+      propertyPath: _name
+      value: 'Money: '
+      objectReference: {fileID: 0}
     - target: {fileID: 6391849700294987372, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -3720,6 +3751,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontSizeBase
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8346453525556316677, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8346453525556316677, guid: 8d2a6098cf64dbb4f9bbfc588ff94cd3,
         type: 3}

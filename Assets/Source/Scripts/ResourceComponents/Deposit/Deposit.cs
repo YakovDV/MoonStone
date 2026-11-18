@@ -51,7 +51,6 @@ public class Deposit : MonoBehaviour, IMineable
         }
 
         ValueChanged?.Invoke(CurrentIntegrity);
-        Debug.Log(CurrentIntegrity);
 
         return true;
     }

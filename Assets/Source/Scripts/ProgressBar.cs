@@ -18,11 +18,15 @@ public class ProgressBar : MonoBehaviour
 
     private void OnDisable()
     {
-        _order.ProgressChanged -= OnProgressChanged;
+        if (_order != null)
+            _order.ProgressChanged -= OnProgressChanged;
     }
 
     public void SetOrder(Order order)
     {
+        if (_slider == null)
+            _slider = GetComponent<Slider>();
+
         if (_order != null)
         {
             _order.ProgressChanged -= OnProgressChanged;

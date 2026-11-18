@@ -12,13 +12,14 @@ public sealed class PlayerCollisionSolver : MonoBehaviour
     [SerializeField, Min(1)] private int _depenetrationIterations = 3;
     [SerializeField, Min(0.1f)] private float _maximumRotationStep = 1.5f;
 
-    [SerializeField] private bool _drawDebug = true;
+    [SerializeField] private bool _drawDebug = false;
 
+    private readonly Vector3[] _corners = new Vector3[8];
     private readonly Collider[] _overlaps = new Collider[16];
 
     public CollisionPose ResolvePose(Vector3 position, Quaternion currentHeading, Quaternion desiredHeading, Vector3 displacement)
     {
-        if (_drawDebug)
+        if (_drawDebug == true)
         {
             DrawCollisionBox(position, currentHeading, Color.green);
             DrawCollisionBox(position + displacement, desiredHeading, Color.yellow);
@@ -40,7 +41,7 @@ public sealed class PlayerCollisionSolver : MonoBehaviour
 
         Vector3 resolvedMovement = resolvedPosition - movementStartPosition;
 
-        if (_drawDebug)
+        if (_drawDebug == true)
             DrawCollisionBox(resolvedPosition, resolvedHeading, Color.cyan);
 
         return new CollisionPose(resolvedPosition, resolvedHeading, resolvedMovement);
@@ -97,7 +98,7 @@ public sealed class PlayerCollisionSolver : MonoBehaviour
             Vector3 direction = planarRemaining / planarDistance;
             Vector3 center = GetCenter(position, heading);
 
-            if (_drawDebug)
+            if (_drawDebug == true)
             {
                 Debug.DrawRay(center, direction * planarDistance, Color.white);
             }
@@ -116,7 +117,7 @@ public sealed class PlayerCollisionSolver : MonoBehaviour
             position += travelled;
             remaining -= travelled;
 
-            if (_drawDebug)
+            if (_drawDebug == true)
             {
                 DrawCollisionBox(position, heading, Color.red);
 
@@ -167,7 +168,7 @@ public sealed class PlayerCollisionSolver : MonoBehaviour
 
                 hasPenetration = true;
 
-                if (_drawDebug)
+                if (_drawDebug == true)
                 {
                     DrawCollisionBox(position, heading, Color.red);
                 }
@@ -187,7 +188,7 @@ public sealed class PlayerCollisionSolver : MonoBehaviour
 
                 Vector3 correction = planarDirection * (correctionDistance + _skinWidth);
 
-                if (_drawDebug)
+                if (_drawDebug == true)
                 {
                     Debug.DrawRay(GetCenter(position, heading), correction, Color.magenta);
                 }
@@ -252,37 +253,33 @@ public sealed class PlayerCollisionSolver : MonoBehaviour
 
     private void DrawBox(Vector3 center, Vector3 halfExtents, Quaternion rotation, Color color)
     {
-        Vector3[] corners =
-        {
-            new(-halfExtents.x, -halfExtents.y, -halfExtents.z),
-            new( halfExtents.x, -halfExtents.y, -halfExtents.z),
-            new( halfExtents.x, -halfExtents.y,  halfExtents.z),
-            new(-halfExtents.x, -halfExtents.y,  halfExtents.z),
+        _corners[0] = new(-halfExtents.x, -halfExtents.y, -halfExtents.z);
+        _corners[1] = new(halfExtents.x, -halfExtents.y, -halfExtents.z);
+        _corners[2] = new(halfExtents.x, -halfExtents.y, halfExtents.z);
+        _corners[3] = new(-halfExtents.x, -halfExtents.y, halfExtents.z);
 
-            new(-halfExtents.x,  halfExtents.y, -halfExtents.z),
-            new( halfExtents.x,  halfExtents.y, -halfExtents.z),
-            new( halfExtents.x,  halfExtents.y,  halfExtents.z),
-            new(-halfExtents.x,  halfExtents.y,  halfExtents.z)
-        };
+        _corners[4] = new(-halfExtents.x, halfExtents.y, -halfExtents.z);
+        _corners[5] = new(halfExtents.x, halfExtents.y, -halfExtents.z);
+        _corners[6] = new(halfExtents.x, halfExtents.y, halfExtents.z);
+        _corners[7] = new(-halfExtents.x, halfExtents.y, halfExtents.z);
 
-        for (int i = 0; i < corners.Length; i++)
-            corners[i] =
-                center + rotation * corners[i];
+        for (int i = 0; i < _corners.Length; i++)
+            _corners[i] = center + rotation * _corners[i];
 
-        Debug.DrawLine(corners[0], corners[1], color);
-        Debug.DrawLine(corners[1], corners[2], color);
-        Debug.DrawLine(corners[2], corners[3], color);
-        Debug.DrawLine(corners[3], corners[0], color);
+        Debug.DrawLine(_corners[0], _corners[1], color);
+        Debug.DrawLine(_corners[1], _corners[2], color);
+        Debug.DrawLine(_corners[2], _corners[3], color);
+        Debug.DrawLine(_corners[3], _corners[0], color);
 
-        Debug.DrawLine(corners[4], corners[5], color);
-        Debug.DrawLine(corners[5], corners[6], color);
-        Debug.DrawLine(corners[6], corners[7], color);
-        Debug.DrawLine(corners[7], corners[4], color);
+        Debug.DrawLine(_corners[4], _corners[5], color);
+        Debug.DrawLine(_corners[5], _corners[6], color);
+        Debug.DrawLine(_corners[6], _corners[7], color);
+        Debug.DrawLine(_corners[7], _corners[4], color);
 
-        Debug.DrawLine(corners[0], corners[4], color);
-        Debug.DrawLine(corners[1], corners[5], color);
-        Debug.DrawLine(corners[2], corners[6], color);
-        Debug.DrawLine(corners[3], corners[7], color);
+        Debug.DrawLine(_corners[0], _corners[4], color);
+        Debug.DrawLine(_corners[1], _corners[5], color);
+        Debug.DrawLine(_corners[2], _corners[6], color);
+        Debug.DrawLine(_corners[3], _corners[7], color);
     }
 }
 

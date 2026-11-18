@@ -28,5 +28,7 @@ public class ProjectInstaller : MonoInstaller
         Container.Bind<SceneNavigator>().AsSingle();
 
         Container.Bind<Wallet>().AsSingle();
+
+        Debug.Log($"ProjectInstaller: SceneCatalog = {_sceneCatalog}");
     }
 }

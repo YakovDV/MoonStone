@@ -9,6 +9,7 @@ public sealed class PlayerGroundDetector : MonoBehaviour
     [SerializeField] private float _rayStartHeight = 4f;
     [SerializeField] private float _rayDistance = 8f;
     [SerializeField] private LayerMask _groundMask;
+    [SerializeField] private bool _drawDebug = false;
 
     private readonly Vector3[] _hitPoints = new Vector3[RaysCount];
 
@@ -49,7 +50,10 @@ public sealed class PlayerGroundDetector : MonoBehaviour
             Vector3 probePoint = position + lateralOffset + up * probeHeight;
             Vector3 rayOrigin = probePoint + up * _rayStartHeight;
 
-            Debug.DrawRay(rayOrigin, direction * _rayDistance, Color.red);
+            if (_drawDebug == true)
+            {
+                Debug.DrawRay(rayOrigin, direction * _rayDistance, Color.red);
+            }
 
             if (Physics.Raycast(rayOrigin, direction, out RaycastHit hit, _rayDistance, _groundMask, QueryTriggerInteraction.Ignore) == false)
             {

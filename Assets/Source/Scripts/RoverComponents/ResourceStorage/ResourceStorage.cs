@@ -31,13 +31,10 @@ public class ResourceStorage : MonoBehaviour, IStorage
     {
         if (CanAccept(config) == false)
         {
-            Debug.Log("Storage is full");
             return false;
         }
 
         AddResource(config);
-
-        Debug.Log($"Added {config.Value} vale, {config.Mass} mass");
 
         return true;
     }

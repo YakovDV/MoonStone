@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -16,6 +17,14 @@ public class BaseMoneySpawner : MonoBehaviour
 
     private int _remainingValue;
     private Coroutine _spawnCoroutine;
+    private WaitForSeconds _spawnWait;
+    private Action<Money> _onMoneyCollected;
+
+    private void Awake()
+    {
+        _onMoneyCollected = OnMoneyCollected;
+        _spawnWait = new(_frequency);
+    }
 
     public void Spawn(int value)
     {
@@ -51,8 +60,6 @@ public class BaseMoneySpawner : MonoBehaviour
 
     private IEnumerator SpawnFrequently()
     {
-        WaitForSeconds wait = new(_frequency);
-
         while (_remainingValue > 0)
         {
             int worth = Mathf.Min(_moneyWorth, _remainingValue);
@@ -60,23 +67,23 @@ public class BaseMoneySpawner : MonoBehaviour
             Money money = _moneySpawner.Spawn(_moneySpawnPoint.position);
 
             money.Initialize(worth);
-            money.Collected += OnMoneyCollected;
+            money.Collected += _onMoneyCollected;
 
             if (money.TryGetComponent(out Rigidbody rigidbody))
             {
                 Vector3 direction = (_moneySpawnPoint.position - _explosionCenterPoint.position).normalized;
-                Vector3 randomDirection = direction + Random.insideUnitSphere * _spawnRandomness;
+                Vector3 randomDirection = direction + UnityEngine.Random.insideUnitSphere * _spawnRandomness;
 
                 randomDirection.Normalize();
 
-                float force = Random.Range(_minForce, _maxForce);
+                float force = UnityEngine.Random.Range(_minForce, _maxForce);
 
                 rigidbody.AddForce(randomDirection * force, ForceMode.Impulse);
             }
 
             _remainingValue -= worth;
 
-            yield return wait;
+            yield return _spawnWait;
         }
 
         _spawnCoroutine = null;
@@ -91,7 +98,7 @@ public class BaseMoneySpawner : MonoBehaviour
     {
         _effectPlayer.PlayEffectAtPoint(money.transform.position);
 
-        money.Collected -= OnMoneyCollected;
+        money.Collected -= _onMoneyCollected;
         money.ResetState();
         _moneySpawner.Despawn(money);
     }

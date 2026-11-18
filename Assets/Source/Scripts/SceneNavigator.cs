@@ -17,6 +17,8 @@ public class SceneNavigator
         _sceneLoader = sceneLoader;
         _sceneCatalog = sceneCatalog;
         _fader = fader;
+
+        Debug.Log($"ProjectInstaller: SceneCatalog = {_sceneCatalog}");
     }
 
     public async void LoadScene(SceneID id)

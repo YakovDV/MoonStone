@@ -92,7 +92,7 @@ MonoBehaviour:
     type: 3}
   _sfxPlayer: {fileID: 5227970011526437234, guid: 6531aee4a02c7cf41b93133c6bc1663d,
     type: 3}
-  _sceneCatalog: {fileID: 11400000, guid: 7ae359bba42813549af60e7333e8632f, type: 2}
+  _sceneCatalog: {fileID: 11400000, guid: 6f1b87fca43c29b4dbe6282bf8e6ddce, type: 2}
   _sceneFader: {fileID: 7999558568609934176}
 --- !u!1001 &7512901201951470392
 PrefabInstance:

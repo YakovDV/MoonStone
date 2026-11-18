@@ -11,6 +11,12 @@ public class MoverSFX : MonoBehaviour
     private bool _wasMoving;
 
     private Coroutine VolumeCoroutine;
+    private Action _stopSFX;
+
+    private void Awake()
+    {
+        _stopSFX = _audioSource.Stop;
+    }
 
     private void Update()
     {
@@ -39,7 +45,7 @@ public class MoverSFX : MonoBehaviour
         }
         else
         {
-            VolumeCoroutine = StartCoroutine(FadeVolume(_audioSource.volume, 0f, _audioSource.Stop));
+            VolumeCoroutine = StartCoroutine(FadeVolume(_audioSource.volume, 0f, _stopSFX));
         }
     }
 

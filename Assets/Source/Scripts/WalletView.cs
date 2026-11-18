@@ -6,7 +6,14 @@ public class WalletView : MonoBehaviour
 {
     [Inject] private Wallet _wallet;
     [SerializeField] private TextMeshProUGUI _text;
-    [SerializeField] private string _name = "Money: ";
+    [SerializeField] private string _name = "";
+
+    private string _cahchedText;
+
+    private void Start()
+    {
+        _cahchedText = _name + "{0}";
+    }
 
     private void OnEnable()
     {
@@ -21,6 +28,6 @@ public class WalletView : MonoBehaviour
 
     private void OnValueChanged(int value)
     {
-        _text.text = $"{_name}{value.ToString()}";
+        _text.SetText(_cahchedText, value);
     }
 }

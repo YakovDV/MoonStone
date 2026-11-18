@@ -1,11 +1,18 @@
 using System;
 using UnityEngine;
+using Unity.Profiling;
 
 [RequireComponent(typeof(Rigidbody), typeof(Collider))]
 public class Money : MonoBehaviour, IAttractable
 {
     [SerializeField] private float _attractionSpeed = 10f;
     [SerializeField] private float _rotationSpeed = 180f;
+
+    private static readonly ProfilerMarker CollectMarker =
+    new("Money.CollectWallet");
+
+    private static readonly ProfilerMarker DespawnMarker =
+        new("Money.DespawnEffects");
 
     private Rigidbody _rigidbody;
     private Transform _target;
@@ -38,6 +45,12 @@ public class Money : MonoBehaviour, IAttractable
     {
         if (other.TryGetComponent(out MoneyCollector collector) == false)
             return;
+
+        using (CollectMarker.Auto())
+            collector.Collect(Worth);
+
+        using (DespawnMarker.Auto())
+            Collected?.Invoke(this);
 
         collector.Collect(Worth);
         Collected?.Invoke(this);

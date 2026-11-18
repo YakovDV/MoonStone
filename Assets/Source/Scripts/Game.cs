@@ -25,6 +25,8 @@ public class Game : MonoBehaviour
 
     [Inject] private TerrainTrackMask _terrainTrackMask;
 
+    [SerializeField] private int _targetFramerate = -1;
+
     [SerializeField] private ProgressBar _progressBar;
     [SerializeField] private ProgressView _progressView;
 
@@ -42,6 +44,8 @@ public class Game : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = _targetFramerate;
+
         _order = new(_config.TargetValue);
 
         if (_progressBar != null)

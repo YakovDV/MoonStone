@@ -211,7 +211,11 @@ namespace YG.EditorScr.BuildModify
 #if UNITY_EDITOR_WIN
             if (!Application.isBatchMode && !string.IsNullOrEmpty(pendingOpenBuildPath))
             {
-                Process.Start("explorer.exe", pendingOpenBuildPath.Replace("/", "\\"));
+                if (Directory.Exists(pendingOpenBuildPath))
+                {
+                    Process.Start("explorer.exe", pendingOpenBuildPath.Replace("/", "\\"));
+                }
+
                 pendingOpenBuildPath = string.Empty;
             }
 #endif

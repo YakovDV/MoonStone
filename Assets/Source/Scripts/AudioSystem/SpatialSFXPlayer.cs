@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +13,13 @@ public class SpatialSFXPlayer : MonoBehaviour
     private int _soundsCount;
 
     private readonly Dictionary<SFXID, float> _nextAllowedTime = new();
+
+    private Action<AudioEmitter> _onReadyToReturn;
+
+    private void Awake()
+    {
+        _onReadyToReturn = OnReadyToReturn;
+    }
 
     public void PlayEffectAtPoint(Vector3 position, SFXID id, SFXSettings settings = null)
     {
@@ -44,7 +52,7 @@ public class SpatialSFXPlayer : MonoBehaviour
 
         AudioEmitter effect = _audioEmitterSpawner.Spawn(position);
 
-        effect.ReadyToReturn += OnReadyToReturn;
+        effect.ReadyToReturn += _onReadyToReturn;
 
         SFXSettings settingsToApply = settings == null ? _standartPlaybackSettings : settings;
         effect.ApplySettings(settingsToApply);
@@ -57,7 +65,7 @@ public class SpatialSFXPlayer : MonoBehaviour
 
     private void OnReadyToReturn(AudioEmitter effect)
     {
-        effect.ReadyToReturn -= OnReadyToReturn;
+        effect.ReadyToReturn -= _onReadyToReturn;
 
         _audioEmitterSpawner.Despawn(effect);
         _soundsCount--;
