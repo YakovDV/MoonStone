@@ -15,19 +15,24 @@ public class DepositIntegrityView : MonoBehaviour
 
     private Coroutine _changeVisibilitySmooth;
 
+    private WaitForSeconds _disappearWait;
+
     private void Awake()
     {
         _deposit = GetComponent<Deposit>();
         _text.alpha = 0f;
+        _disappearWait = new(_disappearDelay);
+
+        _deposit.ValueChanged += OnValueChanged;
+
     }
 
     private void OnEnable()
     {
-        _deposit.ValueChanged += OnValueChanged;
         _text.alpha = 0f;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         _deposit.ValueChanged -= OnValueChanged;
     }
@@ -68,7 +73,7 @@ public class DepositIntegrityView : MonoBehaviour
     {
         yield return ChangeVisibilitySmooth(_fadeDuration, _text.alpha, 1f);
 
-        yield return new WaitForSeconds(_disappearDelay);
+        yield return _disappearWait;
 
         yield return ChangeVisibilitySmooth(_fadeDuration, _text.alpha, 0f);
 

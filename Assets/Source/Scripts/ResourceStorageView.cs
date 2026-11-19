@@ -8,6 +8,13 @@ public class ResourceStorageView : MonoBehaviour
     [SerializeField] private string _mainText = "Container capacity: ";
     [SerializeField] private char _valuesSeparator = '/';
 
+    private string _cachedString;
+
+    private void Awake()
+    {
+        _cachedString = $"{_mainText}{{0:0}}{_valuesSeparator}{{1:0}}";
+    }
+
     private void OnEnable()
     {
         _storage.MassChanged += OnMassChanged;
@@ -21,6 +28,6 @@ public class ResourceStorageView : MonoBehaviour
 
     private void OnMassChanged(float mass)
     {
-        _text.text = $"{_mainText}{mass:0}{_valuesSeparator}{_storage.MaxCapacity:0}";
+        _text.SetText(_cachedString, mass, _storage.MaxCapacity);
     }
 }

@@ -12,14 +12,10 @@ public class ResourceEffector : MonoBehaviour
     private void Awake()
     {
         _resource = GetComponent<Resource>();
-    }
-
-    private void OnEnable()
-    {
         _resource.ResourceConsumed += OnResourceConsumed;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         _resource.ResourceConsumed -= OnResourceConsumed;
     }

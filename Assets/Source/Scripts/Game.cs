@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -42,6 +42,8 @@ public class Game : MonoBehaviour
     private int _totalProgress;
     private int _remainingMoneyBonus;
 
+    private Action<int> _onMoneyCollected;
+
     private void Awake()
     {
         Application.targetFrameRate = _targetFramerate;
@@ -63,6 +65,8 @@ public class Game : MonoBehaviour
         _wallet.RestoreValue(saveData.WalletValue);
         _totalProgress = saveData.TotalProgress;
         _rover.InitializeUpgrades(saveData.UpgradeData);
+
+        _onMoneyCollected = OnMoneyCollected;
     }
 
     private void Start()
@@ -86,8 +90,7 @@ public class Game : MonoBehaviour
         _settingsPanel.ReturnRequested += OnReturnRequested;
 
         _roverBase.ResourceDelivered += OnResourceDelivered;
-
-        _moneyCollector.MoneyCollected += OnMoneyCollected;
+        _moneyCollector.MoneyCollected += _onMoneyCollected;
 
         _order.Completed += OnOrderComleted;
     }
@@ -108,7 +111,8 @@ public class Game : MonoBehaviour
         _settingsPanel.ReturnRequested += OnReturnRequested;
 
         _roverBase.ResourceDelivered -= OnResourceDelivered;
-        _moneyCollector.MoneyCollected -= OnMoneyCollected;
+        _moneyCollector.MoneyCollected -= _onMoneyCollected;
+
         _order.Completed -= OnOrderComleted;
     }
 
