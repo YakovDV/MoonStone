@@ -10,7 +10,7 @@ public class WalletView : MonoBehaviour
 
     private string _cahchedText;
 
-    private void Start()
+    private void Awake()
     {
         _cahchedText = _name + "{0}";
     }
