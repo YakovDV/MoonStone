@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class LevelCard : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class LevelCard : MonoBehaviour
     [SerializeField] private Image _unaccsessible;
     [SerializeField] private Image _lockedTone;
 
+    [Inject] private LocalizationService _localization;
+
     public event Action<SceneID> StartLevelRequested;
 
     private void Awake()
@@ -26,6 +29,7 @@ public class LevelCard : MonoBehaviour
     private void OnEnable()
     {
         _button.onClick.AddListener(RequestStartLevel);
+        RefreshName();
     }
 
     private void OnDisable()
@@ -53,5 +57,13 @@ public class LevelCard : MonoBehaviour
     private void RequestStartLevel()
     {
         StartLevelRequested?.Invoke(_sceneID);
+    }
+
+    private void RefreshName()
+    {
+        if (_orderConfig == null)
+            return;
+
+        _title.text = _localization.Get(_orderConfig.Name);
     }
 }

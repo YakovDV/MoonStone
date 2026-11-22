@@ -14,6 +14,8 @@ public class ProjectInstaller : MonoInstaller
     [SerializeField] private SceneCatalog _sceneCatalog;
     [SerializeField] private ScreenFader _sceneFader;
 
+    [SerializeField] private LocalizationTable _table;
+
     public override void InstallBindings()
     {
         Container.Bind<SaveService>().AsSingle().WithArguments(new GameSaveData(0, 0, _initialUpgradeData), new SettingsSaveData(_audioSettingsSaveData));
@@ -30,5 +32,8 @@ public class ProjectInstaller : MonoInstaller
         Container.Bind<Wallet>().AsSingle();
 
         Debug.Log($"ProjectInstaller: SceneCatalog = {_sceneCatalog}");
+
+        Container.BindInstance(_table);
+        Container.Bind<LocalizationService>().AsSingle().NonLazy();
     }
 }

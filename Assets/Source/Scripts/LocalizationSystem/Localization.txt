@@ -1,0 +1,7 @@
+key	ru	en	tr
+shop.close	Закрыть	Close	Kapat
+shop.upgrade	Улучшить	Upgrade	Yükselt
+upgrade.crusher	Дробилка	Crusher	Kırıcı
+upgrade.container	Контейнер	Container	Konteyner
+upgrade.attractor	Аттрактор	Attractor	Çekici
+TestOrder01	Уровень01	Level01	Seviye01
