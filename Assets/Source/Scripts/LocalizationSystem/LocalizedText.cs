@@ -7,44 +7,31 @@ public sealed class LocalizedText : MonoBehaviour
 {
     [SerializeField] private string _key;
 
-    private LocalizationService _localization;
+    [Inject] private LocalizationService _localization;
+
     private TextMeshProUGUI _text;
-    private bool _subscribed;
 
-    [Inject]
-    private void Construct(LocalizationService localization)
+    private void Awake()
     {
-        _localization = localization;
         _text = GetComponent<TextMeshProUGUI>();
-
-        if (isActiveAndEnabled)
-            Activate();
     }
 
     private void OnEnable()
     {
         if (_localization != null)
-            Activate();
+        {
+            _localization.LanguageChanged += Refresh;
+
+            Refresh();
+        }
     }
 
     private void OnDisable()
     {
-        if (_subscribed == false)
-            return;
-
-        _localization.LanguageChanged -= Refresh;
-        _subscribed = false;
-    }
-
-    private void Activate()
-    {
-        if (_subscribed == false)
+        if (_localization != null)
         {
-            _localization.LanguageChanged += Refresh;
-            _subscribed = true;
+            _localization.LanguageChanged -= Refresh;
         }
-
-        Refresh();
     }
 
     private void Refresh()

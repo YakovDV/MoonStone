@@ -1,4 +1,14 @@
 key	ru	en	tr
+SelectLevel	Выбор уровня	select level	seviye seç
+leaderboard	таблица лидеров	leaderboard	liderlik tablosu
+music	музыка	music	müzik
+effects	эффекты	effects	etkiler
+masterVolume	общая громкость	master volume	genel ses düzeyi
+settings	настройки	settings	ayarlar
+
+Test	тест01	test01	tr_test02
+Test2	тест02	test02	tr_test02
+
 shop.close	Закрыть	Close	Kapat
 shop.upgrade	Улучшить	Upgrade	Yükselt
 upgrade.crusher	Дробилка	Crusher	Kırıcı

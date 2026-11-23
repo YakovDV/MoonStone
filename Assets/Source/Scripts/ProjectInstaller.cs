@@ -15,6 +15,7 @@ public class ProjectInstaller : MonoInstaller
     [SerializeField] private ScreenFader _sceneFader;
 
     [SerializeField] private LocalizationTable _table;
+    [SerializeField] private YgLanguageBridge _ygLanguageBridge;
 
     public override void InstallBindings()
     {
@@ -35,5 +36,6 @@ public class ProjectInstaller : MonoInstaller
 
         Container.BindInstance(_table);
         Container.Bind<LocalizationService>().AsSingle().NonLazy();
+        Container.Bind<YgLanguageBridge>().FromComponentInNewPrefab(_ygLanguageBridge).AsSingle().NonLazy();
     }
 }

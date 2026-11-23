@@ -29,7 +29,6 @@ public class LevelCard : MonoBehaviour
     private void OnEnable()
     {
         _button.onClick.AddListener(RequestStartLevel);
-        RefreshName();
     }
 
     private void OnDisable()
@@ -47,6 +46,8 @@ public class LevelCard : MonoBehaviour
 
         _requiredProgressText.enabled = !available;
         _requiredProgressText.text = progress.ToString() + TextSeparator + _orderConfig.RequiredProgress.ToString();
+
+        RefreshName();
     }
 
     public int GetLevelRequiredProgress()

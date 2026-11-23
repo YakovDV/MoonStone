@@ -4,7 +4,16 @@ using Zenject;
 
 public sealed class YgLanguageBridge : MonoBehaviour
 {
-    private LocalizationService _localization;
+    [Inject] private LocalizationService _localization;
+
+    private void OnEnable()
+    {
+        YG2.onGetSDKData += ApplySdkLanguage;
+        YG2.onSwitchLang += OnLanguageChanged;
+
+        if (YG2.isSDKEnabled)
+            ApplySdkLanguage();
+    }
 
     private void OnDestroy()
     {
@@ -13,18 +22,6 @@ public sealed class YgLanguageBridge : MonoBehaviour
 
         YG2.onGetSDKData -= ApplySdkLanguage;
         YG2.onSwitchLang -= OnLanguageChanged;
-    }
-
-    [Inject]
-    private void Construct(LocalizationService localization)
-    {
-        _localization = localization;
-
-        YG2.onGetSDKData += ApplySdkLanguage;
-        YG2.onSwitchLang += OnLanguageChanged;
-
-        if (YG2.isSDKEnabled)
-            ApplySdkLanguage();
     }
 
     private void ApplySdkLanguage()
