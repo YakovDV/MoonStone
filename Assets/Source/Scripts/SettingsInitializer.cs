@@ -1,6 +1,6 @@
 using Zenject;
 
-public class SettingsInitializer : IInitializable
+public class SettingsInitializer
 {
     private readonly SaveService _saveService;
     private readonly AudioVolumeSettings _audioSettings;

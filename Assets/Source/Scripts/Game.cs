@@ -179,6 +179,8 @@ public class Game : MonoBehaviour
 
         _panelSwitcher.Show(ScreenID.HUD);
         _playerInputReader.EnableGameplayInput();
+
+        Time.timeScale = 1;
     }
 
     private void OnResourceDelivered(int value)
@@ -201,14 +203,12 @@ public class Game : MonoBehaviour
         _completePanel.ShowResult(_remainingMoneyBonus, _totalProgress);
         _wallet.Add(_remainingMoneyBonus);
 
-        _saveService.SaveGameData(
-            new(_wallet.Value,
-            _totalProgress,
-            _rover.GetUpgradeData())
-            );
+        _saveService.SaveGameData(new(_wallet.Value, _totalProgress, _rover.GetUpgradeData()));
 
         _baseMoneySpawner.DespawnAll();
 
         _panelSwitcher.Show(ScreenID.LevelComplete);
+
+        Time.timeScale = 0;
     }
 }

@@ -5,8 +5,7 @@ using UnityEngine;
 public class SettingsSaveData
 {
     [SerializeField] private AudioSettingsSaveData _audioSettings;
-    //public LanguageSettingsSaveData Language = new();
-
+    
     public AudioSettingsSaveData AudioSettingsSaveData => _audioSettings;
 
     public SettingsSaveData(AudioSettingsSaveData audioSettingsSaveData)

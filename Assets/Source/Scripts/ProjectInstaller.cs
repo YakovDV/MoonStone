@@ -19,9 +19,11 @@ public class ProjectInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
+        Container.Bind<ISaveStorage>().To<YgSaveStorage>().AsSingle();
         Container.Bind<SaveService>().AsSingle().WithArguments(new GameSaveData(0, 0, _initialUpgradeData), new SettingsSaveData(_audioSettingsSaveData));
+
         Container.Bind<AudioVolumeSettings>().AsSingle().WithArguments(_audioMixer);
-        Container.BindInterfacesTo<SettingsInitializer>().AsSingle();
+        Container.Bind<SettingsInitializer>().AsSingle();
 
         Container.Bind<MusicPlayer>().FromComponentInNewPrefab(_musicPlayer).AsSingle().NonLazy();
         Container.Bind<SFXPlayer>().FromComponentInNewPrefab(_sfxPlayer).AsSingle().NonLazy();
